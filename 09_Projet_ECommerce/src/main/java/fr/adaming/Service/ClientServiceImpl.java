@@ -1,5 +1,5 @@
 package fr.adaming.Service;
 
-public class ClientServiceImpl {
+public class ClientServiceImpl implements IClientService{
 
 }

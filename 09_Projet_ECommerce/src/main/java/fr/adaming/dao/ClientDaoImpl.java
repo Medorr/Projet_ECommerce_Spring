@@ -1,5 +1,5 @@
 package fr.adaming.dao;
 
-public class ClientDaoImpl {
+public class ClientDaoImpl implements IClientDao {
 
 }
