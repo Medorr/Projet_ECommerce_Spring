@@ -27,7 +27,6 @@ public class ClientManagedBean implements Serializable {
 	private boolean indice;
 	private List<Client> clListe;
 	private HttpSession maSession;
-	private String regexText;
 
 	/**
 	 * Transformation de l'association UML en JAVA et injection dependance
@@ -90,19 +89,6 @@ public class ClientManagedBean implements Serializable {
 		this.clListe = clListe;
 	}
 
-	/**
-	 * @return the regexText
-	 */
-	public String getRegexText() {
-		return regexText;
-	}
-
-	/**
-	 * @param regexText the regexText to set
-	 */
-	public void setRegexText(String regexText) {
-		this.regexText = regexText;
-	}
 
 	/**
 	 * Methodes du client
@@ -170,15 +156,4 @@ public class ClientManagedBean implements Serializable {
 		return "rechCl";
 
 	}
-
-	public void validerTel(FacesContext context, UIComponent composant, Object value) throws ValidatorException {
-
-		String valeur = (String) value;
-
-		if (valeur.length() != 10 ) {
-			throw new ValidatorException(new FacesMessage("Le numero de telephone doit contenir 10 caractères"));
-		}
-
-	}
-
 }

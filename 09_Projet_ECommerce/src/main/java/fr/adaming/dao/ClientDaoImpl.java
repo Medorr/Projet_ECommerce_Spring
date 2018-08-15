@@ -32,7 +32,7 @@ public class ClientDaoImpl implements IClientDao {
 		Session s = sf.getCurrentSession();
 
 		// persist
-		s.persist(cl);
+		s.save(cl);
 
 		return cl;
 	}

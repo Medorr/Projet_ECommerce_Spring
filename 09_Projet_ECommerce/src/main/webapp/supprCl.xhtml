@@ -30,7 +30,9 @@
 	<h:form>
 		<h:panelGrid columns="1">
 			
-			ID Client:<p:inputText value="#{clMB.cl.idClient}"></p:inputText>
+			<h:outputLabel  value="ID Client:" style="font-weight:bold" />
+			<p:inputText value="#{clMB.cl.idClient}"></p:inputText>
+			
 			<p:commandButton value="Supprimer" action="#{clMB.supprClient}" />
 		</h:panelGrid>
 

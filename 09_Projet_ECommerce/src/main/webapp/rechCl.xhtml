@@ -29,8 +29,12 @@
 
 	<h:form>
 		<h:panelGrid columns="1">
-			ID Client: <p:inputText value="#{clMB.cl.idClient}"></p:inputText>
-			Nom Client: <p:inputText value="#{clMB.cl.nomClient}"></p:inputText>
+			<h:outputLabel  value="ID Client:" style="font-weight:bold" />
+			<p:inputText value="#{clMB.cl.idClient}"></p:inputText>
+			
+			<h:outputLabel  value="Nom Client:" style="font-weight:bold" />
+			<p:inputText value="#{clMB.cl.nomClient}"></p:inputText>
+			
 			<p:commandButton value="Rechercher" action="#{clMB.rechIdNom}" update="@all"/>
 		</h:panelGrid>
 	</h:form>

@@ -26,11 +26,42 @@
 <hr/>
 <h:form>
 		<h:panelGrid columns="1">
-			ID client: <p:inputText value="#{clMB.cl.idClient}"></p:inputText>
-			Nom: <p:inputText value="#{clMB.cl.nomClient}"></p:inputText>
-			Adresse: <p:inputText value="#{clMB.cl.adresse}"></p:inputText>
-			Mail: <p:inputText value="#{clMB.cl.email}"></p:inputText>
-			Telephone: <p:inputText value="#{clMB.cl.tel}"></p:inputText>
+		<h:outputLabel  value="ID Client:" style="font-weight:bold" />
+			<p:inputText value="#{clMB.cl.idClient}"></p:inputText>
+			
+			<h:outputLabel for="desc1" value="Nom:" style="font-weight:bold" />
+			<p:inputText id="desc1" value="#{clMB.cl.nomClient}" required="true"
+				label="Nom:">
+				<f:validateLength minimum="3" maximum="30" />
+			</p:inputText>
+			<p:message for="desc1" />
+			<h:outputText value="#{clMB.cl.nomClient}" />
+
+			<h:outputLabel for="desc" value="Adresse:" style="font-weight:bold" />
+			<p:inputText id="desc" value="#{clMB.cl.adresse}" required="true"
+				label="Adresse:">
+				<f:validateLength minimum="5" maximum="50" />
+			</p:inputText>
+			<p:message for="desc" />
+			<h:outputText value="#{clMB.cl.adresse}" />
+
+			<h:outputLabel for="mail" value="Email:" style="font-weight:bold" />
+			<p:inputText id="mail" value="#{clMB.cl.email}"
+				validatorMessage="valeur incorecte">
+				<f:validateRegex
+					pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$" />
+			</p:inputText>
+			<h:message for="mail" />
+			<h:outputText value="#{clMB.cl.email}" />
+
+			<h:outputLabel for="tel" value="Telephone (0/+33):"
+				style="font-weight:bold" />
+			<p:inputText id="tel" value="#{clMB.cl.tel}"
+				validatorMessage="valeur incorecte">
+				<f:validateRegex pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$" />
+			</p:inputText>
+			<h:message for="tel" />
+			<h:outputText value="#{clMB.cl.tel}" />
 
 			<p:commandButton value="Modifier"
 				action="#{clMB.modifClient}" />
