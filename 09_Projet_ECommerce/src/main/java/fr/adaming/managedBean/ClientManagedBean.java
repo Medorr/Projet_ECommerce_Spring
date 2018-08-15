@@ -27,6 +27,7 @@ public class ClientManagedBean implements Serializable {
 	private boolean indice;
 	private List<Client> clListe;
 	private HttpSession maSession;
+	private String regexText;
 
 	/**
 	 * Transformation de l'association UML en JAVA et injection dependance
@@ -37,7 +38,7 @@ public class ClientManagedBean implements Serializable {
 	/**
 	 * Getter et Setter de cliService
 	 */
-	
+
 	public void setCliService(IClientService cliService) {
 		this.cliService = cliService;
 	}
@@ -90,11 +91,26 @@ public class ClientManagedBean implements Serializable {
 	}
 
 	/**
+	 * @return the regexText
+	 */
+	public String getRegexText() {
+		return regexText;
+	}
+
+	/**
+	 * @param regexText the regexText to set
+	 */
+	public void setRegexText(String regexText) {
+		this.regexText = regexText;
+	}
+
+	/**
 	 * Methodes du client
 	 */
-	
+
 	public String ajoutClient() {
 		Client clEnr = cliService.enregistrerClient(cl);
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clSession", clEnr);
 
 		if (clEnr.getIdClient() != 0) {
 			/** Recuperer la liste */
@@ -107,7 +123,7 @@ public class ClientManagedBean implements Serializable {
 			return "ajoutCl";
 		}
 	}
-	
+
 	public String modifClient() {
 		int clModif = cliService.modifClient(cl);
 
@@ -122,7 +138,7 @@ public class ClientManagedBean implements Serializable {
 			return "modifCl";
 		}
 	}
-	
+
 	public String supprClient() {
 		Client clSup = cliService.supprClient(cl);
 
@@ -138,31 +154,31 @@ public class ClientManagedBean implements Serializable {
 		}
 
 	}
-	
-	public String rechIdNom(){
+
+	public String rechIdNom() {
 		List<Client> listRech = cliService.getClientByNomOrId(cl);
-		
-		if(listRech != null){
+
+		if (listRech != null) {
 			this.clListe = listRech;
 			this.indice = true;
-			
-			
-		}else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le ou les clients recherchés sont introuvables"));
-			
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Le ou les clients recherchés sont introuvables"));
+
 		}
 		return "rechCl";
-		
+
 	}
+
 	public void validerTel(FacesContext context, UIComponent composant, Object value) throws ValidatorException {
 
 		String valeur = (String) value;
 
-		if (valeur.length() == 10 ) {
-
-		}else{
+		if (valeur.length() != 10 ) {
 			throw new ValidatorException(new FacesMessage("Le numero de telephone doit contenir 10 caractères"));
 		}
+
 	}
-	
+
 }

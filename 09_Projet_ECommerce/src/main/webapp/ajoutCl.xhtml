@@ -33,6 +33,12 @@
 			Telephone: <p:inputText id="idTel" value="#{clMB.cl.tel}"
 				validator="#{clMB.validerTel}" />
 			<h:message for="idTel" style="color: red" />
+			 <h:outputLabel for="regex" value="Regex (^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$):" style="font-weight:bold"/>
+            <p:inputText id="regex" value="#{validationView.regexText}" validatorMessage="Value does not match pattern.">
+                <f:validateRegex pattern="^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$" />
+            </p:inputText>
+            <p:message for="regex" />
+            <h:outputText value="#{validationView.regexText}" />
 
 			<p:commandButton value="Enregistrer" action="#{clMB.ajoutClient}" />
 		</h:panelGrid>
