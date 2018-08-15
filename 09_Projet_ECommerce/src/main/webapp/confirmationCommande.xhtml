@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>confirmation commande facelet</title>
+
+</h:head>
+<h:body>
+<ui:insert>
+	<ui:include src="templates/menuBar.xhtml"></ui:include>
+</ui:insert>
+
+	<h2 style="color:green">Félicitations, votre commande a été acceptée et est en cours de traitement</h2>
+	<hr/>
+	<h3>Résumé de votre commande effectuée au <h:outputText value="#{panMB.commande.dateCommande}" /> : </h3>
+	<p:dataTable var="lc" value="#{listeLcSession}">
+		
+		
+		<p:column headerText="Designation">
+			<h:outputText value="#{lc.produit.designation}" />
+		</p:column>
+
+		<p:column headerText="Quantité">
+			<h:outputText value="#{lc.quantite}" />
+		</p:column>
+
+		<p:column headerText="Prix">
+			<h:outputText value="#{lc.prix}" />
+		</p:column>
+		
+	</p:dataTable>
+	
+	<h3><h:outputText value="Prix total : #{panMB.prixTotal} €" /></h3>
+	
+	<br/>
+	
+	<h:form>
+		<p:commandButton value="Acheter des nouveaux trucs" action="accueil.xhtml"/>
+	</h:form>
+
+
+
+
+</h:body>
+</html>

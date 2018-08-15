@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>commande facelet</title>
+
+</h:head>
+<h:body>
+<ui:insert>
+	<ui:include src="templates/menuBar.xhtml"></ui:include>
+</ui:insert>
+
+	<h1 style="background-color: red ; text-align: center " > Inscription en tant que client</h1>
+<h:form>
+<h:panelGrid>
+Nom : <h:inputText value="#{clMB.cl.nomClient}" />
+Adresse : <h:inputText value="#{clMB.cl.adresse}" />
+Email : <h:inputText value="#{clMB.cl.email}" />
+Téléphone : <h:inputText value="#{clMB.cl.tel}" />
+
+<p:commandButton value = "Inscription" action="#{clMB.ajoutClient}" />
+
+</h:panelGrid>
+</h:form>
+</h:body>
+</html>

@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>suppression produit facelet</title>
+	<title>paiement facelet</title>
 
 </h:head>
 <h:body>
@@ -14,13 +14,15 @@
 	<ui:include src="templates/menuBar.xhtml"></ui:include>
 </ui:insert>
 
-	<h1>Formulaire de suppression d'un produit</h1>
-	<h:form enctype="multipart/form-data">
-		<h:panelGrid>
-			ID : <p:inputText value="#{prMB.produit.idProduit}" />
-			
-			<h:commandButton value="Supprimer" action="#{prMB.supprProduit}" />
-		</h:panelGrid>
-	</h:form>
+	<h1 style="background-color: red ; text-align: center " > Confirmation de commande et paiement</h1>
+<h:form>
+<h:panelGrid>
+CB : <h:inputText value="Entrez vos coordonnées bancaires" />
+
+
+<p:commandButton value = "Confirmer l'achat" action="#{panMB.passerCommande}" />
+
+</h:panelGrid>
+</h:form>
 </h:body>
 </html>
