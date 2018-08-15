@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Recherche Categorie Facelet</title>
+</h:head>
+
+<h:body>
+
+	<hr />
+
+	<h1>Recherche de categories</h1>
+	<h:form>
+		<h:panelGrid columns="2">		
+			Id Categorie: <p:inputText value="#{catMB.categorie.id}"></p:inputText>
+			Nom Categorie: <p:inputText value="#{catMB.categorie.nom}"></p:inputText>
+			<p:commandButton value="Recherche Categorie"
+				action="#{catMB.getCategorieByNomOrId}" update="@all" />
+		</h:panelGrid>
+	</h:form>
+
+	<h1 style="color: black; text-align: center">Categorie Trouvée</h1>
+
+	<p:dataTable var="cat" value="#{catMB.listeCat}"
+		rendered="#{catMB.indice}"
+		style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
+
+		<p:column headerText="Id_categorie">
+			<h:outputText value="#{cat.id}" />
+		</p:column>
+
+		<p:column headerText="Nom_Categorie">
+			<h:outputText value="#{cat.nom}" />
+		</p:column>
+
+		<p:column headerText="Photo">
+			<h:graphicImage value="#{cat.image}" style="width:100px;height:100px" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cat.description}" />
+		</p:column>
+
+	</p:dataTable>
+
+	<h1 style="color: crimson; text-align: center">
+		<h:messages />
+	</h1>
+</h:body>
+</html>

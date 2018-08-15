@@ -52,16 +52,18 @@ public class CategorieService implements ICategorieService{
 	}
 
 	@Override
-	public Categorie rechCategorieByNomService(Categorie cat) {
+	public Categorie getCategorieByNomService(Categorie cat) {
 		// TODO Auto-generated method stub
-		return null;
+		return catDao.getCategorieByNomDao(cat);
 	}
 
 	@Override
-	public Categorie getCategorieByNomOrIdService(Categorie cat) {
+	public List<Categorie> getCategorieByNomOrIdService(Categorie cat) {
 		// TODO Auto-generated method stub
-		return null;
+		return catDao.getCategorieByNomOrIdDao(cat);
 	}
+
+
 	
 
 

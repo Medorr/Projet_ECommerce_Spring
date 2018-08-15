@@ -11,8 +11,8 @@ public interface ICategorieService {
 	public Categorie ajouterCategorieService(Categorie cat);
 	public int modifCategorieService(Categorie cat);
 	public Categorie supprCategorieService(Categorie cat);
-	public Categorie rechCategorieByNomService(Categorie cat);
+	public Categorie getCategorieByNomService(Categorie cat);
 	
-	public Categorie getCategorieByNomOrIdService(Categorie cat);
+	public List<Categorie> getCategorieByNomOrIdService(Categorie cat);
 
 }

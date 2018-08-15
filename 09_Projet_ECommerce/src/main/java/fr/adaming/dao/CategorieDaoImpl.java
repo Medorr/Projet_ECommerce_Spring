@@ -97,20 +97,27 @@ public class CategorieDaoImpl implements ICategorieDao{
 	}
 
 	@Override
-	public Categorie rechCategorieByNomDao(Categorie cat) {
+	public Categorie getCategorieByNomDao(Categorie cat) {
 		// recup de la session
 		Session s=sf.getCurrentSession();
 		s.get(Categorie.class, cat.getNom());			
 		return cat;
 	}
 
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public Categorie getCategorieByNomOrIdDao(Categorie cat) {
+	public List<Categorie> getCategorieByNomOrIdDao(Categorie cat) {
 		// recupp de la session
 		Session s=sf.getCurrentSession();
 		//la req
 		String req="FROM Categorie cat where cat.id=:pId or cat.nom=:pNom";
-		return null;
+		//Le query
+		Query query=s.createQuery(req);
+		//Passage des params
+		query.setParameter("pId", cat.getId());
+		query.setParameter("pNom", cat.getNom());
+		return query.list();
 	}
 
 }
