@@ -13,17 +13,18 @@
 <h:form>
     <p:panel id="panel" header="Espace Administrateur">
 
-        <h:panelGrid columns="2">
-           Login: <p:inputText value="#{adMB.admin.login}"/> 
-           Password: <p:inputText  value="#{adMB.admin.password}"/>  
- 
+        <h:panelGrid columns="2" cellpadding="5">
+           Login*: <p:inputText value="#{adMB.admin.login}"/> 
+           Password*:  <p:password  value="#{adMB.admin.password}"/>  
         </h:panelGrid>
- 
+ <hr/>
         <p:commandButton value="Se connecter" update="panel" action="#{adMB.seConnecter}"  icon="ui-icon-check"></p:commandButton>
+         <p:commandButton value="Retour Accueil" action="accueilAd.xhtml"></p:commandButton>
     </p:panel>
-    <h2 style="color: crimson; text-align: center"><h:messages></h:messages></h2>
-    <p:commandButton value="Retour Accueil" action="accueilAd.xhtml"></p:commandButton>
+   
 </h:form>
+
+<h1 style="color: crimson; text-align: center"><h:messages /></h1>
 
 </h:body>
 </html>

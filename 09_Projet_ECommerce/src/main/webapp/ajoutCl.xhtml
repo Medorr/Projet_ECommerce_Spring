@@ -4,13 +4,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <h:head>
 	<title>Enregistrement Client</title>
 </h:head>
 
 <h:body>
-<h:form>
+	<h:form>
 		<p:growl id="messages" />
 
 		<p:menubar>
@@ -24,20 +24,23 @@
 		</p:menubar>
 
 	</h:form>
-<hr/>
-<h:form>
+	<hr />
+	<h:form>
 		<h:panelGrid columns="1">
 			Nom: <p:inputText value="#{clMB.cl.nomClient}"></p:inputText>
 			Adresse: <p:inputText value="#{clMB.cl.adresse}"></p:inputText>
 			Mail: <p:inputText value="#{clMB.cl.email}"></p:inputText>
-			Telephone: <p:inputText value="#{clMB.cl.tel}"></p:inputText>
+			Telephone: <p:inputText id="idTel" value="#{clMB.cl.tel}"
+				validator="#{clMB.validerTel}" />
+			<h:message for="idTel" style="color: red" />
 
-			<p:commandButton value="Enregistrer"
-				action="#{clMB.ajoutClient}" />
+			<p:commandButton value="Enregistrer" action="#{clMB.ajoutClient}" />
 		</h:panelGrid>
-</h:form>
+	</h:form>
 
-<h1 style="color: crimson; text-align: center"><h:messages /></h1>
+	<h1 style="color: crimson; text-align: center">
+		<h:messages />
+	</h1>
 
 
 </h:body>

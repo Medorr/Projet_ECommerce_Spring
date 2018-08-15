@@ -8,7 +8,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.Service.IClientService;
 import fr.adaming.model.Client;
@@ -23,6 +26,7 @@ public class ClientManagedBean implements Serializable {
 	private Client cl;
 	private boolean indice;
 	private List<Client> clListe;
+	private HttpSession maSession;
 
 	/**
 	 * Transformation de l'association UML en JAVA et injection dependance
@@ -31,10 +35,15 @@ public class ClientManagedBean implements Serializable {
 	private IClientService cliService;
 
 	/**
-	 * Setter de cliService
+	 * Getter et Setter de cliService
 	 */
+	
 	public void setCliService(IClientService cliService) {
 		this.cliService = cliService;
+	}
+
+	public IClientService getCliService() {
+		return cliService;
 	}
 
 	/**
@@ -48,6 +57,7 @@ public class ClientManagedBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.indice = false;
 		this.clListe = cliService.getAllClient();
 	}
@@ -90,7 +100,7 @@ public class ClientManagedBean implements Serializable {
 			/** Recuperer la liste */
 			List<Client> listeCl = cliService.getAllClient();
 
-			return "accueilAd";
+			return "paiement";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
 
@@ -144,6 +154,15 @@ public class ClientManagedBean implements Serializable {
 		return "rechCl";
 		
 	}
-	
+	public void validerTel(FacesContext context, UIComponent composant, Object value) throws ValidatorException {
+
+		String valeur = (String) value;
+
+		if (valeur.length() == 10 ) {
+
+		}else{
+			throw new ValidatorException(new FacesMessage("Le numero de telephone doit contenir 10 caractères"));
+		}
+	}
 	
 }
