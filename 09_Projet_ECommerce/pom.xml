@@ -113,7 +113,30 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>5.1.38</version>
 	</dependency>
-	 
+	
+	<!-- #### Les librairies pour les photos -->
+	<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>1.3.2</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.2.2</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+	<dependency>
+	    <groupId>commons-codec</groupId>
+	    <artifactId>commons-codec</artifactId>
+	    <version>1.9</version>
+	</dependency>
+		
+		 
   	<!--  forcer maven à builder par Java 8 -->
   </dependencies>
   <build>
