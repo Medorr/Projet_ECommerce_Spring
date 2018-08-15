@@ -23,7 +23,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	@Override
 	public int ajoutProduit(Produit pr) {
 		Session s = sf.getCurrentSession();
-		s.persist(pr);
+		s.save(pr);
 		if (s.get(Produit.class, pr.getIdProduit()) != null) {
 			return 1;
 		} else {

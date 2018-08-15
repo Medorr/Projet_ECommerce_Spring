@@ -30,6 +30,6 @@
   
   
   <welcome-file-list>
-    <welcome-file>accueilCat.xhtml</welcome-file>
+    <welcome-file>listeCategorieSteven.xhtml</welcome-file>
   </welcome-file-list>
 </web-app>

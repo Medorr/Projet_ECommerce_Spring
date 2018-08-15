@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>liste categories facelet</title>
+
+</h:head>
+<h:body>
+<ui:insert>
+	<ui:include src="templates/menuBar.xhtml"></ui:include>
+</ui:insert>
+
+
+	<h1>Liste des catégories</h1>
+
+	<p:dataTable var="cat" value="#{catMBSteven.listeCategorie}">
+		<p:column headerText="ID">
+			<h:outputText value="#{cat.id}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{cat.nom}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cat.description}" />
+		</p:column>
+
+		<p:column headerText="Photo">
+			<h:graphicImage value="#{cat.image}" style="width:100px;height:100px" />
+		</p:column>
+
+		
+	
+		
+		
+<!-- 		<p:column headerText="Action"> -->
+<!-- 			<h:form> -->
+<!-- 				Quantité : <h:inputText value="#{panMB.article.quantite}" /> -->
+<!-- 				<h:commandButton value="Ajouter au panier" action="#{panMB.ajoutArticle}"> -->
+<!-- 		           <f:setPropertyActionListener value="#{pr}" target="#{panMB.article.produit}" /> -->
+<!-- 		        </h:commandButton> -->
+<!-- 			</h:form> -->
+<!-- 		</p:column> -->
+		
+		
+	</p:dataTable>
+
+
+
+
+</h:body>
+</html>

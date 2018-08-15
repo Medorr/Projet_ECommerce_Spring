@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>modif categorie facelet</title>
+
+</h:head>
+<h:body>
+<ui:insert>
+	<ui:include src="templates/menuBar.xhtml"></ui:include>
+</ui:insert>
+
+
+	<h1>Formulaire de modification d'une catégorie</h1>
+	<h:form enctype="multipart/form-data">
+	<h:panelGrid>
+			ID : <p:inputText value="#{catMBSteven.categorie.id}" />
+			Nom : <p:inputText value="#{catMBSteven.categorie.nom}" />
+			Description : <p:inputText value="#{catMBSteven.categorie.description}" />
+			Photo : <p:fileUpload value="#{catMBSteven.file}" mode="simple" skinSimple="true"/>
+			
+			<h:commandButton value="Modifier" action="#{catMBSteven.modifCategorie}" />
+		</h:panelGrid>
+	</h:form>
+
+
+
+
+</h:body>
+</html>
