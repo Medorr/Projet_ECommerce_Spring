@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>La liste des categories Facelet</title>
+</h:head>
+<h:body style="background-color:#9999ff">
+
+<hr/>
+
+
+<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="Categorie" icon="ui-icon-document">
+				<p:menuitem value="Accueil" url="accueilCat.xhtml" />
+				<p:menuitem value="Ajouter" url="ajoutCat.xhtml" />
+				<p:menuitem value="Modifier" url="modifCat.xhtml" />
+				<p:menuitem value="Supprimer" url="supprCat.xhtml" />
+				<p:menuitem value="Rechercher" url="rechCat.xhtml" />
+			</p:submenu>
+		</p:menubar>
+
+	</h:form>
+ 
+    <p:dataTable id="listeCat" var="cat" value="#{catMB.listeCat}" style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
+       
+       <f:facet name="header">
+           Liste des categories
+        </f:facet>
+        
+        <p:column headerText="Id_Categorie">
+            <h:outputText value="#{cat.id}" />
+        </p:column>
+        <p:column headerText="Nom Categorie">
+            <h:outputText value="#{cat.nom}" />
+        </p:column>
+	    <p:column headerText="Photo">
+	        <h:graphicImage value="#{cat.image}" style="width:100px;height:100px"/>
+	    </p:column>
+        <p:column headerText="Description">
+            <h:outputText value="#{cat.description}" />
+        </p:column>
+        <p:column>
+	        <h:form>
+				<h:commandButton value="Produits de la catégorie" action="#{prMB.rechProduitByIdCat}">
+		           	<f:setPropertyActionListener value="#{cat}" target="#{prMB.categorie}" />
+		        </h:commandButton>
+	        </h:form>
+        </p:column>
+    </p:dataTable>
+   
+</h:body>
+</html>
