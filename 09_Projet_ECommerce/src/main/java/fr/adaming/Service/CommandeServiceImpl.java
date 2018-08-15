@@ -122,7 +122,15 @@ public class CommandeServiceImpl implements ICommandeService {
 			message.setFrom(new InternetAddress(username));
 
 			// Set To: header field of the header.
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(com.getClient().getEmail()));
+			message
+			.addRecipient(
+					Message.
+					RecipientType.
+					TO, 
+					new InternetAddress
+					(com.
+							getClient().
+							getEmail()));
 
 			// Set Subject: header du message
 			message.setSubject("Mail facture");
