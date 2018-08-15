@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<title>Modifier Client</title>
+</h:head>
+<h:body>
+<h:form>
+		<p:growl id="messages" />
+
+		<p:menubar>
+			<p:submenu label="Client" icon="ui-icon-document">
+				<p:menuitem value="Liste" url="listeCl.xhtml" />
+				<p:menuitem value="Ajouter" url="ajoutCl.xhtml" />
+				<p:menuitem value="Modifier" url="modifCl.xhtml" />
+				<p:menuitem value="Supprimer" url="supprCl.xhtml" />
+				<p:menuitem value="Rechercher" url="rechCl.xhtml" />
+			</p:submenu>
+		</p:menubar>
+
+	</h:form>
+<hr/>
+<h:form>
+		<h:panelGrid columns="1">
+			ID client: <p:inputText value="#{clMB.cl.idClient}"></p:inputText>
+			Nom: <p:inputText value="#{clMB.cl.nomClient}"></p:inputText>
+			Adresse: <p:inputText value="#{clMB.cl.adresse}"></p:inputText>
+			Mail: <p:inputText value="#{clMB.cl.email}"></p:inputText>
+			Telephone: <p:inputText value="#{clMB.cl.tel}"></p:inputText>
+
+			<p:commandButton value="Modifier"
+				action="#{clMB.modifClient}" />
+		</h:panelGrid>
+</h:form>
+
+<h1 style="color: crimson; text-align: center"><h:messages /></h1>
+
+
+</h:body>
+</html>
