@@ -22,14 +22,14 @@ public class AdminManagedBean {
 	/**
 	 * Transformation de l'association UML en JAVA et injection dependance
 	 */
-	@ManagedProperty("adService")
-	private IAdminService adService;
+	@ManagedProperty(value = "#{adService}")
+	private IAdminService admService;
 	
 	/**
 	 * @param admService
 	 */
-	public void setAdmService(IAdminService adService) {
-		this.adService = adService;
+	public void setAdmService(IAdminService admService) {
+		this.admService = admService;
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class AdminManagedBean {
 	 */
 	/** Connection de l'administrateur */
 	public String seConnecter() {
-		Admin connectAd = adService.isExist(admin);
+		Admin connectAd = admService.isExist(admin);
 		
 		if (connectAd != null) {
 
