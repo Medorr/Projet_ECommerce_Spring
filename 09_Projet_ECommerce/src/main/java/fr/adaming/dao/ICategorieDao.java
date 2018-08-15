@@ -11,8 +11,8 @@ public interface ICategorieDao {
 	public Categorie ajouterCategorieDao(Categorie cat);
 	public int modifCategorieDao(Categorie cat);
 	public Categorie supprCategorieDao(Categorie cat);
-	public Categorie rechCategorieByNomDao(Categorie cat);
+	public Categorie getCategorieByNomDao(Categorie cat);
 	
-	public Categorie getCategorieByNomOrIdDao(Categorie cat);
+	public List<Categorie> getCategorieByNomOrIdDao(Categorie cat);
 
 }

@@ -135,8 +135,33 @@ public class CategorieManagedBean implements Serializable{
 		
 		if(catBD.getId()!=0){
 			this.categorie=catBD;
+			this.indice=true;
 		}else{		
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche à échouer"));
 	}		return "rechCat";
 	}
+	
+	public String getCategorieByNom(){
+		Categorie catBD=catService.getCategorieByNomService(this.categorie);
+		
+		if(catBD.getId()!=0){
+			this.categorie=catBD;
+			this.indice=true;
+		}else{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche par nom à échouer"));
+		
+		
+	}return "rechCat";
+	}
+	
+	public String getCategorieByNomOrId(){
+		List<Categorie> listeCat=catService.getCategorieByNomOrIdService(this.categorie);
+		
+		if(listeCat!=null){
+			this.listeCat=listeCat;
+			this.indice=true;
+		}else{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche par nom ou id à échouer"));
+	}return "rechCat";
+}
 }
