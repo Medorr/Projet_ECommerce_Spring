@@ -13,16 +13,69 @@
 <ui:insert>
 	<ui:include src="templates/menuBar.xhtml"></ui:include>
 </ui:insert>
-
-	<h1 style="background-color: red ; text-align: center " > Confirmation de commande et paiement</h1>
+<h:form>
+<p:steps activeIndex="2" styleClass="custom" readonly="false">
+    <p:menuitem value="Panier" url="panier.xhtml"/>
+    <p:menuitem value="Inscription" url="inscription.xhtml"/>
+    <p:menuitem value="Paiement" url="paiement.xhtml"/>
+    <p:menuitem value="Confirmation" url="confirmationCommande.xhtml"/>
+</p:steps>
+</h:form>
+ 
+<style type="text/css">
+.ui-steps .ui-steps-item {
+    width: 24%;
+}
+ 
+.ui-state-highlight {
+    text-shadow: none !important;
+}
+ 
+.ui-steps.custom {
+    margin-bottom: 30px;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+ 
+.ui-steps.custom .ui-steps-item .ui-steps-number {
+    background-color: #00cc00;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 30px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+ 
+.ui-steps.custom .ui-steps-item.ui-state-highlight .ui-steps-title {
+    color: #555;
+}
+</style>
+<br/>
+	<h1 style="text-align: center " > Confirmation de commande et paiement</h1>
 <h:form>
 <h:panelGrid>
-CB : <h:inputText value="Entrez vos coordonnées bancaires" />
+CB : <p:inputText value="Entrez vos coordonnées bancaires" />
 
 
-<p:commandButton value = "Confirmer l'achat" action="#{panMB.passerCommande}" />
 
 </h:panelGrid>
+</h:form>
+
+<h:form>           
+    <p:growl id="message" showDetail="true" />
+ 
+    <p:commandButton value="Confirmer l'achat" action="#{panMB.passerCommande}">
+        <p:confirm header="Confirmation" message="Vous allez commander #{panMB.nombreArticles} articles différents pour #{panMB.prixTotal}€, êtes-vous sûr?" icon="ui-icon-alert" />
+    </p:commandButton>
+ 
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
 </h:form>
 </h:body>
 </html>
