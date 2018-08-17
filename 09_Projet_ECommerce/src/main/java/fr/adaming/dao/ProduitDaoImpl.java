@@ -92,7 +92,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		List<Produit> listeProduitCat = queryListProduitCat.list();
 
 		for (Produit pr : listeProduitCat) {
-			pr.setImage("data:image/png);base64," + Base64.encodeBase64String(pr.getPhoto()));
+			pr.setImage("data:image/png;base64," + Base64.encodeBase64String(pr.getPhoto()));
 		}
 
 		return listeProduitCat;
