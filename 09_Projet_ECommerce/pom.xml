@@ -149,12 +149,12 @@
 
 		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 		<dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		    <version>1.5.5</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.5</version>
 		</dependency>
 
-		
+
 		<!-- #### librairie itextpdf -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
@@ -162,9 +162,23 @@
 			<version>5.0.6</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>south-street</artifactId>
+			<version>1.0.6</version>
+		</dependency>
 
-		<!-- forcer maven à builder par Java 8 -->
 	</dependencies>
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
+
+	<!-- forcer maven à builder par Java 8 -->
+
 	<build>
 		<plugins>
 			<plugin>

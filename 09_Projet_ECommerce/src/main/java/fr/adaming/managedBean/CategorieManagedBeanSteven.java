@@ -14,7 +14,9 @@ import org.primefaces.model.UploadedFile;
 import org.primefaces.model.chart.PieChartModel;
 
 import fr.adaming.Service.ICategorieServiceSteven;
+import fr.adaming.Service.IProduitService;
 import fr.adaming.model.Categorie;
+import fr.adaming.model.Produit;
 
 @ManagedBean(name="catMBSteven")
 @RequestScoped
@@ -28,15 +30,25 @@ public class CategorieManagedBeanSteven implements Serializable{
 	public void setCatService(ICategorieServiceSteven catService) {
 		this.catService = catService;
 	}
-	
+	@ManagedProperty(value="#{prService}")
+	private IProduitService prodService;
+
+	public IProduitService getProdService() {
+		return prodService;
+	}
+	public void setProdService(IProduitService prodService) {
+		this.prodService = prodService;
+	}
 	private List<Categorie> listeCategorie;
 	private Categorie categorie;
 	private UploadedFile file; 
 	 private PieChartModel pieModel1;
+	 private List<Produit> listeP;
 
 	@PostConstruct
 	public void init(){
 		listeCategorie = catService.getAllCategorie();
+		
 		createPieModels();
 		
 	}
@@ -61,8 +73,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 	}
 	public void setFile(UploadedFile file) {
 		this.file = file;
-	}
-	
+	}	
 	/**
 	 * @return the pieModel1
 	 */
@@ -74,6 +85,18 @@ public class CategorieManagedBeanSteven implements Serializable{
 	 */
 	public void setPieModel1(PieChartModel pieModel1) {
 		this.pieModel1 = pieModel1;
+	}	
+	/**
+	 * @return the listeP
+	 */
+	public List<Produit> getListeP() {
+		return listeP;
+	}
+	/**
+	 * @param listeP the listeP to set
+	 */
+	public void setListeP(List<Produit> listeP) {
+		this.listeP = listeP;
 	}
 	/** méthodes : */
 	public String ajoutCategorie() {
@@ -141,14 +164,17 @@ public class CategorieManagedBeanSteven implements Serializable{
         private void createPieModel1() {
             pieModel1 = new PieChartModel();
              
-            pieModel1.set("Brand 1", 540);
-            pieModel1.set("Brand 2", 325);
-            pieModel1.set("Brand 3", 702);
-            pieModel1.set("Brand 4", 421);
+            for( Categorie cat : listeCategorie ){
+            	listeP = prodService.getProduitByIdCat(cat);
+            	pieModel1.set(cat.getNom(), listeP.size());
+            }
              
-            pieModel1.setTitle("Simple Pie");
-            pieModel1.setLegendPosition("w");
-            pieModel1.setShadow(false);
+          //  pieModel1.setTitle(" Repartition du stock");
+            pieModel1.setLegendPosition("s");
+            pieModel1.setShadow(false);        
+            pieModel1.setShowDataLabels(true);
+
+          
         }
 	
 }

@@ -11,26 +11,13 @@
 </h:head>
 <h:body style="background-color:#9999ff">
 
-<h:form>
-		<p:growl id="messages" />
-
-		<p:menubar>
-			<p:submenu label="Client" icon="ui-icon-document">
-				<p:menuitem value="Liste" url="listeCl.xhtml" />
-				<p:menuitem value="Ajouter" url="ajoutCl.xhtml" />
-				<p:menuitem value="Modifier" url="modifCl.xhtml" />
-				<p:menuitem value="Supprimer" url="supprCl.xhtml" />
-				<p:menuitem value="Rechercher" url="rechCl.xhtml" />
-			</p:submenu>
-			<p:menuitem value="Logout" action="#{adMB.logout}"
-				icon="ui-icon-extlink" />
-		</p:menubar>
-
-	</h:form>
-	
+<ui:insert>
+	<ui:include src="templates/menuBarAd.xhtml"></ui:include>
+</ui:insert>
 
 <hr/>
 <h1 style="color:crimson; text-align:center">Bienvenu dans l'espace administrateur ! </h1>
-<p:chart type="pie" model="#{catMBSteven.pieModel1}" style="width:400px;height:300px"  />
+<h2 style="color:DodgerBlue; text-align:center; text-decoration:underline">Repartition des stocks</h2>
+<p:chart type="pie" model="#{catMBSteven.pieModel1}" style="width:400px; height:400px; margin-left:35%"  />
 </h:body>
 </html>

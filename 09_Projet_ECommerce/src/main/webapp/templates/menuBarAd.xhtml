@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>menubar produit facelet</title>
+
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl id="messages" />
+		<p:menubar>
+
+			<p:submenu label="Categories" icon="ui-icon-document">
+				<p:menuitem value="Ajouter" url="ajoutCat.xhtml" />
+				<p:menuitem value="Modifier" url="modifCat.xhtml" />
+				<p:menuitem value="Supprimer" url="supprCat.xhtml" />
+				<p:menuitem value="Rechercher" url="rechCat.xhtml" />
+			</p:submenu>
+
+			<p:submenu label="Produits" icon="ui-icon-document">
+				<p:menuitem value="Ajouter" url="ajoutProduit.xhtml" />
+				<p:menuitem value="Modifier" url="modifProduit.xhtml" />
+				<p:menuitem value="Supprimer" url="supprProduit.xhtml" />
+				<p:menuitem value="Rechercher" url="rechProduit.xhtml" />
+			</p:submenu>
+
+			<p:submenu label="Client" icon="ui-icon-document">
+				<p:menuitem value="Liste" url="listeCl.xhtml" />
+				<p:menuitem value="Ajouter" url="ajoutCl.xhtml" />
+				<p:menuitem value="Modifier" url="modifCl.xhtml" />
+				<p:menuitem value="Supprimer" url="supprCl.xhtml" />
+				<p:menuitem value="Rechercher" url="rechCl.xhtml" />
+			</p:submenu>
+
+
+			<f:facet name="options">
+
+				<p:commandButton type="submit" value="Logout"
+					action="#{adMB.logout}" icon="ui-icon-extlink"
+					style="margin-right:10px" />
+			</f:facet>
+
+		</p:menubar>
+	</h:form>
+</h:body>
+</html>
