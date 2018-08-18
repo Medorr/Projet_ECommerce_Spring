@@ -59,6 +59,7 @@ public class CategorieDaoImplSteven implements ICategorieDaoSteven{
 		Session s = sf.getCurrentSession();
 		Categorie catOut = (Categorie) s.get(Categorie.class, cat.getId());
 		if (catOut != null) {
+			catOut.setImage("data:image/png;base64,"+Base64.encodeBase64String(catOut.getPhoto()));
 			return catOut;
 		} else {
 			return null;
@@ -83,8 +84,9 @@ public class CategorieDaoImplSteven implements ICategorieDaoSteven{
 	public Categorie rechCategorieByNom(Categorie cat) {
 		// recup de la session
 		Session s=sf.getCurrentSession();
-		s.get(Categorie.class, cat.getNom());			
-		return cat;
+		Categorie catOut = (Categorie) s.get(Categorie.class, cat.getNom());
+		catOut.setImage("data:image/png;base64,"+Base64.encodeBase64String(catOut.getPhoto()));
+		return catOut;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -99,7 +101,14 @@ public class CategorieDaoImplSteven implements ICategorieDaoSteven{
 		//Passage des params
 		query.setParameter("pId", cat.getId());
 		query.setParameter("pNom", cat.getNom());
-		return query.list();
+		
+		// Ici : il manquait le categ.setImage() -->étape 4 du tuto, du coup il n'y avait rien dans l'attribut image des catégories de la liste
+		List<Categorie> listeCategorie = query.list();
+		for (Categorie categ : listeCategorie) {
+			categ.setImage("data:image/png);base64," + Base64.encodeBase64String(categ.getPhoto()));
+		}
+		
+		return listeCategorie;
 	}
 	
 	
