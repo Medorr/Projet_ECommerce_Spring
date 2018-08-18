@@ -10,11 +10,12 @@
 
 </h:head>
 <h:body>
-	<ui:insert>
-		<ui:include src="templates/menuBar.xhtml"></ui:include>
-	</ui:insert>
+<ui:insert>
+	<ui:include src="templates/menuBar.xhtml"></ui:include>
+</ui:insert>
 	<h1>page d'accueil</h1>
-	<!-- ************************************************************************************************* -->
+	
+		<!-- ************************************************************************************************* -->
 
 	<h:form id="form">
 		<h:panelGrid columns="2" cellpadding="5">
@@ -181,32 +182,21 @@
 	</p:megaMenu>
 	<!-- **************************************************************************************************************************** -->
 
-	<h1>Nos produits (galleria)</h1>
-	<p:galleria value="#{prMB.listeProduit}" var="pr" panelWidth="500"
-		panelHeight="313" showCaption="true">
-		<h:graphicImage value="#{pr.image}" alt="#{pr.description}"
-			title="#{pr.designation}" />
+<h1>Nos produits (galleria)</h1>
+	<p:galleria value="#{prMB.listeProduit}" var="pr" panelWidth="500" panelHeight="313" showCaption="true">
+    	<p:graphicImage value="#{pr.image}" alt="#{pr.description}" title="#{pr.designation}" />
 	</p:galleria>
+	
+<h1>Nos produits (contentFlow)</h1>
+<p:contentFlow value="#{prMB.listeProduit}" var="pr">
+    <p:graphicImage value="#{pr.image}" styleClass="content" />
+    <div class="caption">#{pr.designation}</div>
+</p:contentFlow>
 
-	<h1>Nos produits (contentFlow)</h1>
-	<p:contentFlow value="#{prMB.listeProduit}" var="pr">
-		<h:graphicImage value="#{pr.image}" styleClass="content" />
-		<div class="caption">#{pr.designation}</div>
-	</p:contentFlow>
+<h1>Nous trouver : </h1>
+<!-- <iframe width="400" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://cartosm.eu/map?lon=-1.5616899907241&lat=47.213482193207&zoom=16&width=400&height=350&mark=true&nav=true&pan=false&zb=inout&style=default&icon=down"></iframe><br /><div id="cartosmlink"><a href="http://www.openstreetmap.org/?mlat=47.213482193207&mlon=-1.5616899907241&zoom=16&layers=M" style="text-align:left;">Voir sur une carte plus grande</a></div> -->
+<!-- ************************************************************************************************* -->
 
-	<h3>ImageSwitch Fade</h3>
-	<p:imageSwitch effect="fade" id="fadeEffect">
-		<ui:repeat value="#{prMB.listeProduit}" var="pr" id="fadeEffectImages">
-			<h:graphicImage value="#{pr.image}" id="image" />
-		</ui:repeat>
-	</p:imageSwitch>
-
-	<h1>Nous trouver :</h1>
-
-	<iframe
-		src="http://cartosm.eu/map?lon=-1.5616899907241&lat=47.213482193207&zoom=16&width=400&height=350&mark=true&nav=true&pan=false&zb=inout&style=default&icon=down"
-		width="400" height="350" frameborder="0" scrolling="no"
-		marginheight="0" marginwidth="0"> </iframe>
 
 
 

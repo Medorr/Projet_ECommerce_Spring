@@ -34,6 +34,6 @@
 	</context-param>
 	
   <welcome-file-list>
-    <welcome-file>listeCategorieSteven.xhtml</welcome-file>
+    <welcome-file>accueilDemba.xhtml</welcome-file>
   </welcome-file-list>
 </web-app>
