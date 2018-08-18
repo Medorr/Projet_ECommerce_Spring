@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>liste produits facelet</title>
+	<title>promotions facelet</title>
 
 </h:head>
 <h:body>
@@ -15,9 +15,9 @@
 </ui:insert>
 
 
-	<h1>Liste des produits</h1>
+	<h1>Liste des produits en promotion</h1>
 
-	<p:dataTable var="pr" value="#{prMB.listeProduit}">
+	<p:dataTable var="pr" value="#{prMB.listeProduitPromo}">
 <!-- 		<p:column headerText="ID"> -->
 <!-- 			<h:outputText value="#{pr.idProduit}" /> -->
 <!-- 		</p:column> -->
@@ -31,7 +31,7 @@
 		</p:column>
 
 		<p:column headerText="Prix">
-			<h:outputText value="#{pr.prix}" />
+			<h:outputText style="font-weight:bold;color:red" value="#{pr.prix}€ (-20%) !" />
 		</p:column>
 
 		<p:column headerText="Quantité">

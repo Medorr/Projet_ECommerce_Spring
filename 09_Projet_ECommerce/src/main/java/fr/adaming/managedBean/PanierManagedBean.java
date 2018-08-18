@@ -182,10 +182,7 @@ public class PanierManagedBean implements Serializable{
 		/** trouver l'id de la LigneCommande à supprimer dans le panier et récupérer son index*/
 		for (LigneCommande lc : this.panier.getListeLignesCommande()){
 			
-			if (lc.getProduit()
-					.getIdProduit()==
-					article.getProduit()
-					.getIdProduit()){
+			if (lc.getProduit().getIdProduit()==article.getProduit().getIdProduit()){
 				index = this.panier.getListeLignesCommande().indexOf(lc);
 			}
 		}

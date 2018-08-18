@@ -29,15 +29,15 @@
 
 	</h:form>
  
-    <p:dataTable id="listeCat" var="cat" value="#{catMB.listeCat}" style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
+    <p:dataTable id="listeCat" var="cat" value="#{catMBSteven.listeCategorie}" style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
        
        <f:facet name="header">
            Liste des categories
         </f:facet>
         
-        <p:column headerText="Id_Categorie">
-            <h:outputText value="#{cat.id}" />
-        </p:column>
+<!--         <p:column headerText="Id_Categorie"> -->
+<!--             <h:outputText value="#{cat.id}" /> -->
+<!--         </p:column> -->
         <p:column headerText="Nom Categorie">
             <h:outputText value="#{cat.nom}" />
         </p:column>

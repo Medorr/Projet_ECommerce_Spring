@@ -18,9 +18,9 @@
 	<h1>Liste des catégories</h1>
 
 	<p:dataTable var="cat" value="#{catMBSteven.listeCategorie}">
-		<p:column headerText="ID">
-			<h:outputText value="#{cat.id}" />
-		</p:column>
+<!-- 		<p:column headerText="ID"> -->
+<!-- 			<h:outputText value="#{cat.id}" /> -->
+<!-- 		</p:column> -->
 
 		<p:column headerText="Nom">
 			<h:outputText value="#{cat.nom}" />
@@ -33,20 +33,6 @@
 		<p:column headerText="Photo">
 			<h:graphicImage value="#{cat.image}" style="width:100px;height:100px" />
 		</p:column>
-
-		
-	
-		
-		
-<!-- 		<p:column headerText="Action"> -->
-<!-- 			<h:form> -->
-<!-- 				Quantité : <h:inputText value="#{panMB.article.quantite}" /> -->
-<!-- 				<h:commandButton value="Ajouter au panier" action="#{panMB.ajoutArticle}"> -->
-<!-- 		           <f:setPropertyActionListener value="#{pr}" target="#{panMB.article.produit}" /> -->
-<!-- 		        </h:commandButton> -->
-<!-- 			</h:form> -->
-<!-- 		</p:column> -->
-		
 		
 	</p:dataTable>
 

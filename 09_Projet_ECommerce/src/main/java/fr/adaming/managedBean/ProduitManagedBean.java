@@ -1,6 +1,9 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -35,6 +38,7 @@ public class ProduitManagedBean implements Serializable {
 	private Categorie categorie;
 	private LigneCommande ligneCommande;
 	private List<Produit> listeProduitCat;
+	private List<Produit> listeProduitPromo;
 
 	private UploadedFile file;
 	
@@ -42,6 +46,23 @@ public class ProduitManagedBean implements Serializable {
 	public void init(){
 		listeProduit = prService.getAllProduit();
 		
+		// récupérer les 2 produits les + en stock :
+		listeProduitPromo = prService.getAllProduit();
+		Collections.sort(listeProduitPromo, new Comparator<Produit>() {
+			@Override
+			public int compare(Produit produit2, Produit produit1) {
+				// TODO Auto-generated method stub
+				return  Integer.compare(produit1.getQuantite(), produit2.getQuantite());
+			}});
+		List<Produit> listeProduitPromo2 = new ArrayList<Produit>();
+		for (int i=0;i<2;i++){
+			listeProduitPromo2.add(listeProduitPromo.get(i));
+		}
+		// les mettre à -20% :
+		for(Produit pr : listeProduitPromo2){
+			pr.setPrix(pr.getPrix()*4/5);
+		}
+		listeProduitPromo = listeProduitPromo2;
 	}
 
 	public ProduitManagedBean() {
@@ -97,6 +118,12 @@ public class ProduitManagedBean implements Serializable {
 
 	public void setListeProduitCat(List<Produit> listeProduitCat) {
 		this.listeProduitCat = listeProduitCat;
+	}
+	public List<Produit> getListeProduitPromo() {
+		return listeProduitPromo;
+	}
+	public void setListeProduitPromo(List<Produit> listeProduitPromo) {
+		this.listeProduitPromo = listeProduitPromo;
 	}
 
 	/** méthodes : */
@@ -168,6 +195,7 @@ public class ProduitManagedBean implements Serializable {
 		}
 		
 	}
+	
 	
 	
 
