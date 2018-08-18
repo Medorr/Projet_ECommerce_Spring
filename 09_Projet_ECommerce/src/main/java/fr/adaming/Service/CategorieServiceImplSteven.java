@@ -41,15 +41,25 @@ public class CategorieServiceImplSteven implements ICategorieServiceSteven{
 	}
 
 	@Override
-	public Categorie rechCategorie(Categorie cat) {
+	public Categorie rechCategorieById(Categorie cat) {
 		// TODO Auto-generated method stub
-		return catDao.rechCategorie(cat);
+		return catDao.rechCategorieById(cat);
 	}
 
 	@Override
 	public List<Categorie> getAllCategorie() {
 		// TODO Auto-generated method stub
 		return catDao.getAllCategorie();
+	}
+	@Override
+	public Categorie getCategorieByNom(Categorie cat) {
+		// TODO Auto-generated method stub
+		return catDao.rechCategorieByNom(cat);
+	}
+	@Override
+	public List<Categorie> getCategorieByNomOrId(Categorie cat) {
+		// TODO Auto-generated method stub
+		return catDao.rechCategorieByIdOrNom(cat);
 	}
 
 }

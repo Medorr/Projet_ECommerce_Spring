@@ -18,12 +18,17 @@
 	<h:form enctype="multipart/form-data">
 		<h:panelGrid>
 			ID : <p:inputText value="#{catMBSteven.categorie.id}" />
+			Nom: <p:inputText value="#{catMBSteven.categorie.nom}"/>
 			
-			<h:commandButton value="Rechercher" action="#{catMBSteven.rechCategorie}" />
+			<p:commandButton value="Recherche" action="#{catMBSteven.getCategorieByNomOrId}" update="@all"/>
 		</h:panelGrid>
 	</h:form>
-	
-	<p:dataTable var="cat" value="#{catMBSteven.categorie}">
+
+	<p:dataTable var="cat" value="#{catMBSteven.listeCategorie}" rendered="#{catMBSteven.indice}"
+		style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
+		
+				<h1 style="color: black; text-align: center">Categorie Trouvée</h1>
+		
 		<p:column headerText="ID">
 			<h:outputText value="#{cat.id}" />
 		</p:column>
@@ -42,6 +47,8 @@
 
 	</p:dataTable>
 	
-	<h:messages/>
+		<h1 style="color: crimson; text-align: center">
+		<h:messages />
+	</h1>
 </h:body>
 </html>

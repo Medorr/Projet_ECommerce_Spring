@@ -14,6 +14,7 @@ import org.primefaces.model.UploadedFile;
 
 import fr.adaming.Service.ICategorieService;
 import fr.adaming.model.Categorie;
+
 @ManagedBean(name="catMB")
 @RequestScoped
 public class CategorieManagedBean implements Serializable{
@@ -29,7 +30,7 @@ public class CategorieManagedBean implements Serializable{
 	//***************************************************************
 	@ManagedProperty(value="#{catService}")
 	private ICategorieService catService;
-	//Setter pour l'injection de dependance
+	//Getters et Setters pour l'injection de dependance
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
@@ -77,18 +78,15 @@ public class CategorieManagedBean implements Serializable{
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
+	
 	// Les methodes metiers
 	public String ajoutCategorie(){
-		if(file!=null){
-		this.categorie
-		.setPhoto(
-				file.
-				getContents());
-		}
+		this.categorie.setPhoto(file.getContents());
 		
-		Categorie catBD=catService.ajouterCategorieService(this.categorie);
 		
-		if(catBD.getId()!=0){
+		Categorie catBD =catService.ajouterCategorieService(this.categorie);
+		
+		if(catBD.getId() != 0){
 			
 			//recuperer la liste des categorie
 			listeCat=catService.getAllCategorieService();
@@ -101,6 +99,7 @@ public class CategorieManagedBean implements Serializable{
 	}
 	
 	public String modifCategorie(){
+		this.categorie.setPhoto(file.getContents());
 		//recup une cat dans la BD
 		int catBD=catService.modifCategorieService(this.categorie);
 		

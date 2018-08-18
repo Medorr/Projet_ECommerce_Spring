@@ -55,6 +55,7 @@ public class CategorieDaoImpl implements ICategorieDao{
 		//recup de la session
 		Session s=sf.getCurrentSession();
 		s.get(Categorie.class, cat.getId());
+		cat.setImage("data:image/png);base64," + Base64.encodeBase64String(cat.getPhoto()));///Attention ajouter pour l'erreur de la photo
 		return cat;
 	}
 
@@ -108,6 +109,7 @@ public class CategorieDaoImpl implements ICategorieDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Categorie> getCategorieByNomOrIdDao(Categorie cat) {
+		cat.setImage("data:image/png);base64," + Base64.encodeBase64String(cat.getPhoto()));///Attention ajouter pour l'erreur de la photo
 		// recupp de la session
 		Session s=sf.getCurrentSession();
 		//la req

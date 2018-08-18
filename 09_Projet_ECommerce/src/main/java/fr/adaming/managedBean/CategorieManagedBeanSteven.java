@@ -22,6 +22,8 @@ import fr.adaming.model.Produit;
 @RequestScoped
 public class CategorieManagedBeanSteven implements Serializable{
 	
+	private boolean indice;
+	
 	@ManagedProperty(value="#{catServiceSteven}")
 	private ICategorieServiceSteven catService;
 	public ICategorieServiceSteven getCatService() {
@@ -48,7 +50,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 	@PostConstruct
 	public void init(){
 		listeCategorie = catService.getAllCategorie();
-		
+		this.indice=false;
 		createPieModels();
 		
 	}
@@ -74,6 +76,13 @@ public class CategorieManagedBeanSteven implements Serializable{
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}	
+	
+	public boolean isIndice() {
+		return indice;
+	}
+	public void setIndice(boolean indice) {
+		this.indice = indice;
+	}
 	/**
 	 * @return the pieModel1
 	 */
@@ -140,14 +149,26 @@ public class CategorieManagedBeanSteven implements Serializable{
 		}
 		
 	}
+	public String getCategorieByNom(){
+		Categorie catBD=catService.getCategorieByNom(this.categorie);
+		
+		if(catBD.getId()!=0){
+			this.categorie=catBD;
+			this.indice=true;
+		}else{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche par nom à échouer"));
+		
+		
+	}return "rechCategorieSteven";
+	}
 	
-	
-	
-	public String rechCategorie(){
-		Categorie catRech = catService.rechCategorie(this.categorie);
+	//**************************************************************************************************************************
+	public String rechCategorieById(){
+		Categorie catRech = catService.rechCategorieById(this.categorie);
 		
 		if(catRech != null){
 			categorie = catRech;
+			this.indice=true;
 			return "rechCategorieSteven";
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La catégorie recherchée n'existe pas !"));
@@ -155,6 +176,19 @@ public class CategorieManagedBeanSteven implements Serializable{
 		}
 		
 	}
+	//*****************************************************************************************************
+	
+	public String getCategorieByNomOrId(){
+		List<Categorie> listeCat=catService.getCategorieByNomOrId(this.categorie);
+		
+		if(listeCat!=null){
+			listeCategorie=listeCat;
+			this.indice=true;
+		}else{
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche par nom ou id à échouer"));
+	}return "rechCategorieSteven";
+}
+	//***********************************************************************************************************************
 	
 	
 	private void createPieModels() {

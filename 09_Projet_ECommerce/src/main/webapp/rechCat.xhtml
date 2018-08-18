@@ -11,34 +11,36 @@
 </h:head>
 
 <h:body>
-
+<ui:insert>
+	<ui:include src="templates/menuBar.xhtml"></ui:include>
+</ui:insert>
 	<hr />
 
-	<h1>Recherche de categories</h1>
-	<h:form>
+	<h1>Formulaire de Recherche d'une categories</h1>
+	<h:form enctype="multipart/form-data">
 		<h:panelGrid columns="2">		
-			Id Categorie: <p:inputText value="#{catMB.categorie.id}"></p:inputText>
-			Nom Categorie: <p:inputText value="#{catMB.categorie.nom}"></p:inputText>
-			<p:commandButton value="Recherche Categorie"
+			Id Categorie: <p:inputText value="#{catMBSteven.categorie.id}"/>
+			Nom Categorie: <p:inputText value="#{catMBSteven.categorie.nom}"/>
+			<p:commandButton value="Recherche"
 				action="#{catMB.getCategorieByNomOrId}" update="@all" />
 		</h:panelGrid>
 	</h:form>
 
 	<h1 style="color: black; text-align: center">Categorie Trouvée</h1>
 
-	<p:dataTable var="cat" value="#{catMB.listeCat}"
+	<p:dataTable var="cat" value="#{catMBSteven.categorie}"
 		rendered="#{catMB.indice}"
 		style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
 
-		<p:column headerText="Id_categorie">
+		<p:column headerText="ID">
 			<h:outputText value="#{cat.id}" />
 		</p:column>
 
-		<p:column headerText="Nom_Categorie">
+		<p:column headerText="NOM">
 			<h:outputText value="#{cat.nom}" />
 		</p:column>
 
-		<p:column headerText="Photo">
+		<p:column headerText="PHOTO">
 			<h:graphicImage value="#{cat.image}" style="width:100px;height:100px" />
 		</p:column>
 

@@ -3,6 +3,7 @@ package fr.adaming.dao;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class CategorieDaoImplSteven implements ICategorieDaoSteven{
 	}
 
 	@Override
-	public Categorie rechCategorie(Categorie cat) {
+	public Categorie rechCategorieById(Categorie cat) {
 		Session s = sf.getCurrentSession();
 		Categorie catOut = (Categorie) s.get(Categorie.class, cat.getId());
 		if (catOut != null) {
@@ -76,6 +77,29 @@ public class CategorieDaoImplSteven implements ICategorieDaoSteven{
 		}
 
 		return listeCategorie;
+	}
+
+	@Override
+	public Categorie rechCategorieByNom(Categorie cat) {
+		// recup de la session
+		Session s=sf.getCurrentSession();
+		s.get(Categorie.class, cat.getNom());			
+		return cat;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Categorie> rechCategorieByIdOrNom(Categorie cat) {
+		// recupp de la session
+		Session s=sf.getCurrentSession();
+		//la req
+		String req="FROM Categorie cat where cat.id=:pId or cat.nom=:pNom";
+		//Le query
+		Query query=s.createQuery(req);
+		//Passage des params
+		query.setParameter("pId", cat.getId());
+		query.setParameter("pNom", cat.getNom());
+		return query.list();
 	}
 	
 	
