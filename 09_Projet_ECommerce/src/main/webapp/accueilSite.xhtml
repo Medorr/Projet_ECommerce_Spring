@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>accueil Steven facelet</title>
+
+</h:head>
+<h:body>
+	<ui:insert>
+		<ui:include src="templates/menuBar.xhtml"></ui:include>
+	</ui:insert>
+	<h1>page d'accueil</h1>
+	
+
+	<h1>Nos produits (galleria)</h1>
+	<p:galleria value="#{prMB.listeProduit}" var="pr" panelWidth="500"
+		panelHeight="313" showCaption="true">
+		<h:graphicImage value="#{pr.image}" alt="#{pr.description}"
+			title="#{pr.designation}" />
+	</p:galleria>
+
+	<h1>Nos produits (contentFlow)</h1>
+	<p:contentFlow value="#{prMB.listeProduit}" var="pr">
+		<h:graphicImage value="#{pr.image}" styleClass="content" />
+		<div class="caption">#{pr.designation}</div>
+	</p:contentFlow>
+
+	<h3>ImageSwitch Fade</h3>
+	<p:imageSwitch effect="fade" id="fadeEffect">
+		<ui:repeat value="#{prMB.listeProduit}" var="pr" id="fadeEffectImages">
+			<h:graphicImage value="#{pr.image}" id="image" />
+		</ui:repeat>
+	</p:imageSwitch>
+
+	<h1>Nous trouver :</h1>
+	<p:link href="https://www.openstreetmap.org/#map=17/47.21298/-1.56205" target="_blank"> Nous trouver</p:link>
+
+<!-- openstreetmap -->
+<!-- 	<iframe -->
+<!-- 		src="http://cartosm.eu/map?lon=-1.5616899907241&lat=47.213482193207&zoom=16&width=400&height=350&mark=true&nav=true&pan=false&zb=inout&style=default&icon=down" -->
+<!-- 		width="400" height="350" frameborder="0" scrolling="no" -->
+<!-- 		marginheight="0" marginwidth="0"> </iframe> -->
+
+<!-- google maps -->	
+<p:gmap center="47.212980, -1.562050" zoom="15" type="HYBRID" style="width:100%;height:400px" />
+
+<br/>
+
+<h1>promotions :</h1>
+<h:form> 
+    <p:dataScroller value="#{prMB.listeProduit}" var="car" chunkSize="10">
+        <f:facet name="header">
+            Scroll Down to Load More Cars
+        </f:facet>
+ 
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+            <p:graphicImage name="demo/images/car/#{car.brand}-big.gif" /> 
+ 
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{car.id}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Year:" />
+                    <h:outputText value="#{car.year}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Color:" />
+                    <h:outputText value="#{car.color}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
+</h:form>
+
+
+</h:body>
+</html>
