@@ -33,6 +33,7 @@
 		<param-value>south-street</param-value>
 	</context-param>
 	
+	
   <welcome-file-list>
     <welcome-file>accueilSite.xhtml</welcome-file>
   </welcome-file-list>
