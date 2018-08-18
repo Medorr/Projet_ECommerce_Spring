@@ -11,13 +11,21 @@
 </h:head>
 <h:body >
 
+<ui:composition template="/templates/layout.xhtml">
+<ui:define name="corps">
+
 <ui:insert>
 	<ui:include src="templates/menuBarAd.xhtml"></ui:include>
 </ui:insert>
 
-<hr/>
-<h1 style="color:ForestGreen; text-align:center">Bienvenu  dans l'espace administrateur ! </h1>
-<h2 style="color:LimeGreen; text-align:center; text-decoration:underline">Repartition des stocks</h2>
-<p:chart type="pie" model="#{catMBSteven.pieModel1}" style="width:400px; height:400px; margin-left:35%"  />
+
+<h2 style="color:DarkGreen; text-align:center; text-decoration:underline">Visualisation des stocks</h2>
+<p:chart type="bar" model="#{prMB.horizontalBarModel}" style="width:900px; height:450px; margin:auto" />
+
+<h2 style="color:DarkGreen; text-align:center; text-decoration:underline">Repartition des produits par catégories</h2>
+<p:chart type="pie" model="#{catMBSteven.pieModel1}" style="width:400px; height:400px; margin: auto"  />
+
+</ui:define>
+</ui:composition>
 </h:body>
 </html>

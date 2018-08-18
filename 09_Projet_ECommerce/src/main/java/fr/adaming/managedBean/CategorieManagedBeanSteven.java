@@ -107,6 +107,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 	public void setListeP(List<Produit> listeP) {
 		this.listeP = listeP;
 	}
+	
 	/** méthodes : */
 	public String ajoutCategorie() {
 		this.categorie.setPhoto(file.getContents());
@@ -193,6 +194,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 	
 	private void createPieModels() {
         createPieModel1();
+
 	}
 	
         private void createPieModel1() {
@@ -210,5 +212,5 @@ public class CategorieManagedBeanSteven implements Serializable{
 
           
         }
-	
+
 }

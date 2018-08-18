@@ -18,13 +18,6 @@
 
 <h:body>
 
-	<!-- spécifier l'endroit ou je vais inclure mon header via la balise ui:inset -->
-<ui:insert name="header">	
-	<h:panelGroup layout="block" class="header-style">
-		<!-- inclure le fichier concretement sans modif via la balise ui:include -->	
-		<ui:include src="/templates/header.xhtml"/>
-	</h:panelGroup>
-</ui:insert>
 
 
 <h:panelGroup layout="block" class="corps-style">
@@ -34,14 +27,7 @@
 </h:panelGroup>
 
 
-	
-	<!-- spécifier l'endroit ou je vais inclure mon footer via la balise ui:inset -->
-<ui:insert name="footer">
-	<h:panelGroup layout="block" class="footer-style">
-	<!-- inclure le fichier concretement sans modif via la balise ui:include -->
-	<ui:include src="/templates/footer.xhtml"/>
-	</h:panelGroup>
-</ui:insert>
+
 
 
 </h:body>

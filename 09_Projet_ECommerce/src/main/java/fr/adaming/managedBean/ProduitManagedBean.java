@@ -14,11 +14,17 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.model.UploadedFile;
+import org.primefaces.model.UploadedFile;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.HorizontalBarChartModel;
 
 import fr.adaming.Service.IProduitService;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Produit;
+
 
 @ManagedBean(name="prMB")
 @RequestScoped
@@ -39,12 +45,14 @@ public class ProduitManagedBean implements Serializable {
 	private LigneCommande ligneCommande;
 	private List<Produit> listeProduitCat;
 	private List<Produit> listeProduitPromo;
+	private HorizontalBarChartModel horizontalBarModel;
 
 	private UploadedFile file;
 	
 	@PostConstruct
 	public void init(){
 		listeProduit = prService.getAllProduit();
+		createBarModels();
 		
 		// récupérer les 2 produits les + en stock :
 		listeProduitPromo = prService.getAllProduit();
@@ -125,6 +133,12 @@ public class ProduitManagedBean implements Serializable {
 	public void setListeProduitPromo(List<Produit> listeProduitPromo) {
 		this.listeProduitPromo = listeProduitPromo;
 	}
+	public HorizontalBarChartModel getHorizontalBarModel() {
+		return horizontalBarModel;
+	}
+	public void setHorizontalBarModel(HorizontalBarChartModel horizontalBarModel) {
+		this.horizontalBarModel = horizontalBarModel;
+	}
 
 	/** méthodes : */
 	public String ajoutProduit() {
@@ -196,7 +210,35 @@ public class ProduitManagedBean implements Serializable {
 		
 	}
 	
+	private void createBarModels() {
+        createHorizontalBarModel();
+    }
 	
+	 private void createHorizontalBarModel() {
+	        horizontalBarModel = new HorizontalBarChartModel();
+	 
+	        ChartSeries quantité = new ChartSeries();
+	        
+	   for(Produit p: listeProduit){
+		   listeProduit = prService.getAllProduit();
+		   quantité.setLabel("Quantité");
+	        quantité.set(p.getDesignation(), p.getQuantite());
+	   }
+	 
+	        horizontalBarModel.addSeries(quantité);
+	
+	 
+	        horizontalBarModel.setLegendPosition("e");
+	        horizontalBarModel.setStacked(true);
+	         
+	        Axis xAxis = horizontalBarModel.getAxis(AxisType.X);
+	        xAxis.setLabel("Quantité");
+	         
+	        Axis yAxis = horizontalBarModel.getAxis(AxisType.Y);
+	        yAxis.setLabel("Produits");
+	        yAxis.setTickFormat("%.10f");
+	        
+	    }
 	
 
 }

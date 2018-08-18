@@ -1,0 +1,27 @@
+.header-style {
+    text-align: center;
+    font-size: 10px;
+    display: block;
+    padding: 20px;
+    background-color: wheat;
+}
+
+.corps-style {
+    text-align: center;
+    font-size: 20px;
+    display: block;
+    padding: 1px;
+   background-image: url("#{resource['images/fondnature.jpg']}");
+    background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+.footer-style {
+    text-align: center;
+    font-size: 250px;
+    display: block;
+    padding: 1px;
+    background-color: antiquewhite;
+}
+
