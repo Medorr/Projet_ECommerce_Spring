@@ -12,30 +12,30 @@
 <h:body>
 	<h:form>
 		<p:growl id="messages" />
-		<p:menuitem value="Accueil" url="listeCategorieSteven.xhtml" icon="ui-icon-home" />
-		<p:menubar>
 
-			<p:menuitem value="Accueil" url="listeCategorieSteven.xhtml"
+		<p:menubar>
+			<p:menuitem value="Accueil" url="accueilSteven.xhtml"
 				icon="ui-icon-home" />
 
 			<p:submenu label="Categories" icon="ui-icon-document">
-				<p:menuitem value="Liste des categories" url="listeCategorieSteven.xhtml" />
-				<p:menuitem value="Ajouter" url="ajoutCategorieSteven.xhtml" />
-				<p:menuitem value="Modifier" url="modifCategorieSteven.xhtml" />
-				<p:menuitem value="Supprimer" url="supprCategorieSteven.xhtml" />
+				<p:menuitem value="Liste des categories"
+					url="listeCategorieSteven.xhtml" />
 				<p:menuitem value="Rechercher" url="rechCategorieSteven.xhtml" />
 			</p:submenu>
 
 			<p:submenu label="Produits" icon="ui-icon-document">
 				<p:menuitem value="Liste des Produits" url="listeProduit.xhtml" />
-				<p:menuitem value="Ajouter" url="ajoutProduit.xhtml" />
-				<p:menuitem value="Modifier" url="modifProduit.xhtml" />
-				<p:menuitem value="Supprimer" url="supprProduit.xhtml" />
 				<p:menuitem value="Rechercher" url="rechProduit.xhtml" />
 			</p:submenu>
 			<p:menuitem value="Panier (#{panMB.nombreArticles} articles)"
 				url="panier.xhtml" icon="ui-icon-cart" />
-			<p:menuitem value="Admin" url="login.xhtml" />	
+
+			<f:facet name="options">
+
+				<p:commandButton type="submit" value="Login"
+					action="#{adMB.logout}"
+					style="margin-right:10px" />
+			</f:facet>
 		</p:menubar>
 	</h:form>
 </h:body>
