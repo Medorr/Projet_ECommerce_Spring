@@ -11,7 +11,11 @@
     </application>
 <!--     <navigation-rule> -->
 <!--     	<from-view-id>panier.xhtml</from-view-id> -->
-<!--     	<navigation-case></navigation-case> -->
+<!--     	<navigation-case> -->
+<!--     		<from-action></from-action> -->
+<!--     		<from-outcome></from-outcome> -->
+<!--     		<to-view-id></to-view-id> -->
+<!--     	</navigation-case> -->
     	
 <!--     </navigation-rule> -->
 

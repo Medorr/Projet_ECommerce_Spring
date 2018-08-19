@@ -10,9 +10,15 @@
 
 </h:head>
 <h:body>
+
+	<ui:composition template="/templates/layout.xhtml">
+<ui:define name="corps">
 	<ui:insert>
 		<ui:include src="templates/menuBar.xhtml"></ui:include>
 	</ui:insert>
+	
+
+
 	<h1 style="background-color: #00cc00">Bienvenue sur le site de e-commerce !</h1>
 
 	<h2>Nos produis en promotion à -20% :<h:form><p:commandButton value="Profitez-en !" action="promotions"/></h:form></h2>
@@ -47,6 +53,9 @@
 	<h5 style="margin: auto;">© e-commerce 2018. e-commerce SARL, 24 rue crébillon, 44000 NANTES, FRANCE.</h5>
 	<h5 ><p:link href="https://www.openstreetmap.org/#map=17/47.21298/-1.56205" target="_blank"> Nous trouver </p:link></h5>
 </div>
+
+</ui:define>
+</ui:composition>
 
 
 
