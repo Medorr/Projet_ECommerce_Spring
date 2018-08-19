@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.FaceletContext;
 import javax.servlet.http.HttpSession;
 
 import fr.adaming.Service.ICommandeService;
@@ -175,6 +176,12 @@ public class PanierManagedBean implements Serializable{
 		/** calcul du nombre d'articles */
 		this.nombreArticles=this.panier.getListeLignesCommande().size();
 		
+		// vérifier que la quantité demandée n'excède pas le stock du produit
+		if (this.article.getQuantite()>this.article.getProduit().getQuantite()){
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "La quantité demandée excède le stock ("+article.getProduit().getQuantite()+" produits en stocks) : nous vous livrerons après un délai indéterminé", "title"));
+			FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("globalMessage");
+		}
+		
 		return "panier";
 	}
 	public String supprArticle() {
@@ -222,14 +229,16 @@ public class PanierManagedBean implements Serializable{
 		return "confirmationCommande";
 	}
 	
-	public void destroyWorld() {
-        addMessage("System Error", "Please try again later.");
-    }
-     
-    public void addMessage(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
 	
+    public String inscription(){
+    	
+    	if(panier.getListeLignesCommande().size()!=0){
+    		return "inscription";
+    	}else{
+    		FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Votre panier est vide", "title"));
+    		FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("globalMessage");
+    	return "panier";
+    }
+    }
 
 }

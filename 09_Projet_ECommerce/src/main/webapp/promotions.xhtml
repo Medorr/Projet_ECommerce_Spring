@@ -17,49 +17,49 @@
 
 	<h1>Liste des produits en promotion</h1>
 
-	<p:dataTable var="pr" value="#{prMB.listeProduitPromo}">
-<!-- 		<p:column headerText="ID"> -->
-<!-- 			<h:outputText value="#{pr.idProduit}" /> -->
-<!-- 		</p:column> -->
 
-		<p:column headerText="Designation">
-			<h:outputText value="#{pr.designation}" />
-		</p:column>
-
-		<p:column headerText="Description">
-			<h:outputText value="#{pr.description}" />
-		</p:column>
-
-		<p:column headerText="Prix">
-			<h:outputText style="font-weight:bold;color:red" value="#{pr.prix}€ (-20%) !" />
-		</p:column>
-
-		<p:column headerText="Quantité">
-			<h:outputText value="#{pr.quantite}" />
-		</p:column>
-
-		<p:column headerText="Photo">
-			<h:graphicImage value="#{pr.image}" style="width:100px;height:100px" />
-		</p:column>
-	
-		<p:column headerText="Catégorie">
-			<h:outputText value="#{pr.categorie.nom}" />
-		</p:column>
-		
-		<p:column headerText="Action">
-			<h:form>
-				Quantité : <h:inputText value="#{panMB.article.quantite}" />
-				<h:commandButton value="Ajouter au panier" action="#{panMB.ajoutArticle}">
-		           <f:setPropertyActionListener value="#{pr}" target="#{panMB.article.produit}" />
-		        </h:commandButton>
-			</h:form>
-		</p:column>
-		
-		
-	</p:dataTable>
-
-
-
+    <p:dataScroller var="pr" value="#{prMB.listeProduitPromo}" chunkSize="5">
+        <f:facet name="header">
+            Descendre pour afficher plus de produits
+        </f:facet>
+ 
+        <f:facet name="loader">
+            <p:commandButton type="button" value="Plus" icon="ui-icon-circle-triangle-s"/>
+        </f:facet>
+ 
+        <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+            <p:outputPanel>
+            	<h:graphicImage value="#{pr.image}" style="width:100px;height:100px" />
+ 			</p:outputPanel>
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Designation:" />
+                    <h:outputText value="#{pr.designation}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Description:" />
+                    <h:outputText value="#{pr.description}" style="font-weight: bold"/>
+ 
+                    <h:outputText value="Prix:" />
+                    <h:outputText style="font-weight:bold;color:red" value="#{pr.prix}€ (-20%) !"/>
+                    
+                    <h:outputText value="Catégorie:" />
+                    <h:outputText value="#{pr.categorie.nom}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+            <p:outputPanel>
+            	<h:outputText value="Ajouter au panier" />
+            	<br/>
+            	<h:form>
+	            	<h:inputText placeholder="quantité" value="#{panMB.article.quantite}"/>
+	            	<h:commandButton value="Ajouter" action="#{panMB.ajoutArticle}">
+	            		<f:setPropertyActionListener value="#{pr}" target="#{panMB.article.produit}" />
+	            	</h:commandButton>
+            	</h:form>
+            </p:outputPanel>
+            
+        </h:panelGrid>
+        <hr/>
+    </p:dataScroller>
 
 </h:body>
 </html>
