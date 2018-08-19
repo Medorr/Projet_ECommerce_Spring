@@ -10,6 +10,8 @@
 	<title>login Facelet</title>
 </h:head>
 <h:body>
+<ui:composition template="/templates/layout.xhtml">
+<ui:define name="corps">
 <h:form>
     <p:panel id="panel" header="Espace Administrateur">
 
@@ -25,6 +27,7 @@
 </h:form>
 
 <h1 style="color: crimson; text-align: center"><h:messages /></h1>
-
+</ui:define>
+</ui:composition>
 </h:body>
 </html>

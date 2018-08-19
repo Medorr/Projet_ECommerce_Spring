@@ -10,6 +10,8 @@
 
 </h:head>
 <h:body>
+<ui:composition template="/templates/layout.xhtml">
+<ui:define name="corps">
 <ui:insert>
 	<ui:include src="templates/menuBar.xhtml"></ui:include>
 </ui:insert>
@@ -77,5 +79,8 @@ CB : <p:inputText value="Entrez vos coordonnées bancaires" />
         <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
     </p:confirmDialog>
 </h:form>
+
+</ui:define>
+</ui:composition>
 </h:body>
 </html>

@@ -10,6 +10,8 @@
 
 </h:head>
 <h:body>
+<ui:composition template="/templates/layout.xhtml">
+<ui:define name="corps">
 <ui:insert>
 	<ui:include src="templates/menuBar.xhtml"></ui:include>
 </ui:insert>
@@ -96,7 +98,8 @@
 	</h:form>
 		<h:messages id="globalMessage" style="color:red;font-weight:bold"/>
 
-
+</ui:define>
+</ui:composition>
 
 
 </h:body>

@@ -10,6 +10,8 @@
 </h:head>
 
 <h:body>
+<ui:composition template="/templates/layout.xhtml">
+<ui:define name="corps">
 	<ui:insert>
 	<ui:include src="templates/menuBarAd.xhtml"></ui:include>
 </ui:insert>
@@ -58,6 +60,7 @@
 		<h:messages />
 	</h1>
 
-
+</ui:define>
+</ui:composition>
 </h:body>
 </html>
