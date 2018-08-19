@@ -1,6 +1,7 @@
 package fr.adaming.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Properties;
@@ -27,6 +28,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.GrayColor;
@@ -97,7 +99,7 @@ public class CommandeServiceImpl implements ICommandeService {
 
 		// mon compte gmail (pour recevoir les messages)
 		final String username = "bauchemin.c@gmail.com";
-		final String password = "claire2208";
+		final String password = "geol220891";
 
 		// les propriétées
 		Properties props = new Properties();
@@ -152,7 +154,7 @@ public class CommandeServiceImpl implements ICommandeService {
 			DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");
 			MimeBodyPart pdfbp = new MimeBodyPart();
 			pdfbp.setDataHandler(new DataHandler(dataSource));
-			pdfbp.setFileName("test.pdf");
+			pdfbp.setFileName("facture.pdf");
 
 			// On regroupe les deux dans le message
 			MimeMultipart mp = new MimeMultipart();
@@ -175,10 +177,10 @@ public class CommandeServiceImpl implements ICommandeService {
 	/**
 	 * ecrire le pdf (using iText API)
 	 */
-	public void writePdf(OutputStream outputStream, Commande com) throws Exception {
+	public void writePdf(ByteArrayOutputStream outputStream, Commande com) throws Exception {
 		Document document = new Document();
-		PdfWriter.getInstance(document, outputStream);
-
+		 PdfWriter.getInstance(document, outputStream);
+	
 		// ouvrir le document
 		document.open();
 
@@ -198,10 +200,14 @@ public class CommandeServiceImpl implements ICommandeService {
 			d += lc.getPrix();
 		}
 		
-		// composition du pdf
+		// composition du pdf	
+		
+		 Image img = Image.getInstance(getClass().getClassLoader().getResource("logo-jardin-vert1.jpg"));
+		 document.add(img);
+	
 		Paragraph paragraph = new Paragraph();
 		paragraph.add(
-				new Chunk("Cher(e) Mr(Mme) " + com.getClient().getNomClient() + "," ));
+				new Chunk("\n\n Cher(e) Mr(Mme) " + com.getClient().getNomClient() + "," ));
 		document.add(paragraph);
 		
 		Paragraph paragraph1 = new Paragraph();
