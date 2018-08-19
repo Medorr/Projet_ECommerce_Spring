@@ -212,7 +212,7 @@ public class CommandeServiceImpl implements ICommandeService {
 		
 		Paragraph paragraph1 = new Paragraph();
 		paragraph1.add(
-				new Chunk("\n votre numero commande:"+ com.getIdCommande() + "\n Date de commande: "+ com.getDateCommande()+ "\n Votre commande serat livrée sous 3 jours (ouvrables) à l'adresse suivante:" + com.getClient().getAdresse() + "," + "\n\n voici le recapitulatif de votre facture:\n\n"));
+				new Chunk("\n votre numero commande:"+ com.getIdCommande() + "\n Date de commande: "+ com.getDateCommande()+ "\n Votre commande sera livrée sous 3 jours (ouvrables) à l'adresse suivante:" + com.getClient().getAdresse() + "," + "\n\n voici le recapitulatif de votre facture:\n\n"));
 		document.add(paragraph1);
 		
 		//On créer un objet table dans lequel on intialise ça taille.
