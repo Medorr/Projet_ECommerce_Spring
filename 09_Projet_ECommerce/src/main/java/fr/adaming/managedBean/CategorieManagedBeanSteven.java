@@ -115,7 +115,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 
 		if (catAjout != 0) {
 			listeCategorie = catService.getAllCategorie();
-			return "listeCategorieSteven";
+			return "accueilAd";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout de la Categorie a échoué !"));
 			return "ajoutCategorieSteven";
@@ -130,7 +130,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 
 		if (catModif != 0) {
 			listeCategorie = catService.getAllCategorie();
-			return "listeCategorieSteven";
+			return "accueilAd";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La modification de la Categorie a échoué !"));
 			return "modifCategorieSteven";
@@ -143,7 +143,7 @@ public class CategorieManagedBeanSteven implements Serializable{
 		
 		if(catSuppr != 0){
 			listeCategorie = catService.getAllCategorie();
-			return "listeCategorieSteven";
+			return "accueilAd";
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression de la Categorie a échoué !"));
 			return "supprCategorieSteven";

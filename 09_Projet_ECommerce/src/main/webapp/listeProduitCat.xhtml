@@ -6,7 +6,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>liste produits facelet</title>
+	<title>liste produits par catégorie facelet</title>
 
 </h:head>
 <h:body>
@@ -17,10 +17,10 @@
 </ui:insert>
 
 
-	<h1>Liste des produits</h1>
+	<h1>Liste des produits de la catégorie #{catEnCours.nom}</h1>
 
 
-    <p:dataScroller var="pr" value="#{prMB.listeProduit}" chunkSize="5">
+    <p:dataScroller var="pr" value="#{prMB.listeProduitCat}" chunkSize="5">
         <f:facet name="header">
             Descendre pour afficher plus de produits
         </f:facet>
@@ -42,7 +42,7 @@
                     <h:outputText value="#{pr.description}" style="font-weight: bold"/>
  
                     <h:outputText value="Prix:" />
-                    <h:outputText value="#{pr.prix} €" style="font-weight: bold"/>
+                    <h:outputText value="#{pr.prix}" style="font-weight: bold"/>
                     
                     <h:outputText value="Catégorie:" />
                     <h:outputText value="#{pr.categorie.nom}" style="font-weight: bold"/>
@@ -53,10 +53,10 @@
             	<h:outputText value="Ajouter au panier" />
             	<br/>
             	<h:form>
-	            	<p:inputText placeholder="quantité" value="#{panMB.article.quantite}"/>
-	            	<p:commandButton value="Ajouter" action="#{panMB.ajoutArticle}">
+	            	<h:inputText placeholder="quantité" value="#{panMB.article.quantite}"/>
+	            	<h:commandButton value="Ajouter" action="#{panMB.ajoutArticle}">
 	            		<f:setPropertyActionListener value="#{pr}" target="#{panMB.article.produit}" />
-	            	</p:commandButton>
+	            	</h:commandButton>
 	            	</h:form>
             </p:outputPanel>
             

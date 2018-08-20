@@ -38,6 +38,7 @@ public class PanierManagedBean implements Serializable{
 	private Commande commande;
 	private Boolean b = false;
 	private int index;
+	private String pluriel;
 	
 	@ManagedProperty(value="#{prService}")
 	private IProduitService prService;
@@ -67,9 +68,13 @@ public class PanierManagedBean implements Serializable{
 			}
 			this.nombreArticles=this.panier.getListeLignesCommande().size();
 			this.commande=new Commande();
+			
 		}
-		
-		
+		// pluriel
+		this.pluriel="";
+		if(this.nombreArticles>1){
+			this.pluriel="s";
+		}
 		
 	}
 
@@ -145,7 +150,13 @@ public class PanierManagedBean implements Serializable{
 		this.index = index;
 	}
 
-	
+	public String getPluriel() {
+		return pluriel;
+	}
+
+	public void setPluriel(String pluriel) {
+		this.pluriel = pluriel;
+	}
 
 	/** méthodes : */
 	public String ajoutArticle() {
@@ -182,6 +193,12 @@ public class PanierManagedBean implements Serializable{
 			FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add("globalMessage");
 		}
 		
+		//gérer le pluriel
+		this.pluriel="";
+		if(this.nombreArticles>1){
+			this.pluriel="s";
+		}
+		
 		return "panier";
 	}
 	public String supprArticle() {
@@ -205,6 +222,12 @@ public class PanierManagedBean implements Serializable{
 		}
 		/** calcul du nombre d'articles */
 		this.nombreArticles=this.panier.getListeLignesCommande().size();
+		
+		//gérer le pluriel
+		this.pluriel="";
+				if(this.nombreArticles>1){
+					this.pluriel="s";
+				}
 		
 		return "panier";
 	}

@@ -71,5 +71,10 @@ public class ProduitServiceImpl implements IProduitService {
 	public List<Produit> getProduitByIdCat(Categorie cat) {
 		return prDao.getProduitByIdCat(cat);
 	}
+	@Override
+	public List<Produit> getProduitByNom(Produit pr) {
+		// TODO Auto-generated method stub
+		return prDao.getProduitByNom(pr);
+	}
 
 }

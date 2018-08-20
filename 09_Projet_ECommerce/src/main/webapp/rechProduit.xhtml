@@ -19,16 +19,17 @@
 	<h1>Formulaire de recherche d'un produit</h1>
 	<h:form enctype="multipart/form-data">
 		<h:panelGrid>
-			ID : <p:inputText value="#{prMB.produit.idProduit}" />
 			
-			<h:commandButton value="Rechercher" action="#{prMB.rechProduit}" />
+			Designation: <p:inputText value="#{prMB.produit.designation}"/>
+			<p:commandButton value="Recherche" action="#{prMB.getProduitByNom}" update="@all"/>
 		</h:panelGrid>
 	</h:form>
-	
-	<p:dataTable var="pr" value="#{prMB.produit}">
-		<p:column headerText="ID">
-			<h:outputText value="#{pr.idProduit}" />
-		</p:column>
+
+	<p:dataTable var="pr" value="#{prMB.listeProduitRech}" rendered="#{prMB.indice}"
+		style="margin-bottom:40px; margin-right:40px; margin-left:40px; margin-top:40px">
+		
+				<h1 style="color: black; text-align: center">Categorie Trouvée</h1>
+		
 
 		<p:column headerText="Designation">
 			<h:outputText value="#{pr.designation}" />
@@ -37,23 +38,27 @@
 		<p:column headerText="Description">
 			<h:outputText value="#{pr.description}" />
 		</p:column>
-
+		
 		<p:column headerText="Prix">
-			<h:outputText value="#{pr.prix}" />
+			<h:outputText value="#{pr.prix}€" />
 		</p:column>
-
-		<p:column headerText="Quantité">
-			<h:outputText value="#{pr.quantite}" />
+		
+		<p:column headerText="Catégorie">
+			<h:outputText value="#{pr.categorie.nom}"/>
 		</p:column>
 
 		<p:column headerText="Photo">
 			<h:graphicImage value="#{pr.image}" style="width:100px;height:100px" />
 		</p:column>
+		
+		
+		
 
 	</p:dataTable>
 	
-	<h:messages/>
-	
+		<h1 style="color: crimson; text-align: center">
+		<h:messages />
+	</h1>
 	</ui:define>
 	</ui:composition>
 </h:body>

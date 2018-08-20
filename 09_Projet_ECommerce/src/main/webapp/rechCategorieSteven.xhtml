@@ -19,7 +19,7 @@
 	<h1>Formulaire de recherche d'une catégorie</h1>
 	<h:form enctype="multipart/form-data">
 		<h:panelGrid>
-			ID : <p:inputText value="#{catMBSteven.categorie.id}" />
+			
 			Nom: <p:inputText value="#{catMBSteven.categorie.nom}"/>
 			
 			<p:commandButton value="Recherche" action="#{catMBSteven.getCategorieByNomOrId}" update="@all"/>
@@ -31,9 +31,6 @@
 		
 				<h1 style="color: black; text-align: center">Categorie Trouvée</h1>
 		
-		<p:column headerText="ID">
-			<h:outputText value="#{cat.id}" />
-		</p:column>
 
 		<p:column headerText="Nom">
 			<h:outputText value="#{cat.nom}" />
@@ -46,6 +43,10 @@
 		<p:column headerText="Photo">
 			<h:graphicImage value="#{cat.image}" style="width:100px;height:100px" />
 		</p:column>
+		
+		
+		
+		
 
 	</p:dataTable>
 	

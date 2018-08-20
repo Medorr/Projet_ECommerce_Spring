@@ -98,4 +98,19 @@ public class ProduitDaoImpl implements IProduitDao {
 		return listeProduitCat;
 	}
 
+	@Override
+	public List<Produit> getProduitByNom(Produit pr) {
+		Session s = sf.getCurrentSession();
+		String req = "FROM Produit pr WHERE pr.designation=:pDesign";
+		org.hibernate.Query queryListProduitDesign = s.createQuery(req);
+		queryListProduitDesign.setParameter("pDesign", pr.getDesignation());
+		List<Produit> listeProduitDesign = queryListProduitDesign.list();
+
+		for (Produit pr2 : listeProduitDesign) {
+			pr2.setImage("data:image/png;base64," + Base64.encodeBase64String(pr2.getPhoto()));
+		}
+
+		return listeProduitDesign;
+	}
+
 }

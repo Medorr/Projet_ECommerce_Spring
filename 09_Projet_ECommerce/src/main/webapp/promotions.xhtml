@@ -52,10 +52,10 @@
             	<h:outputText value="Ajouter au panier" />
             	<br/>
             	<h:form>
-	            	<h:inputText placeholder="quantité" value="#{panMB.article.quantite}"/>
-	            	<h:commandButton value="Ajouter" action="#{panMB.ajoutArticle}">
+	            	<p:inputText placeholder="quantité" value="#{panMB.article.quantite}"/>
+	            	<p:commandButton value="Ajouter" action="#{panMB.ajoutArticle}">
 	            		<f:setPropertyActionListener value="#{pr}" target="#{panMB.article.produit}" />
-	            	</h:commandButton>
+	            	</p:commandButton>
             	</h:form>
             </p:outputPanel>
             

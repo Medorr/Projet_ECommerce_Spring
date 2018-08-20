@@ -82,7 +82,7 @@
 		
 		<p:column headerText="Action">
 			<h:form>
-				<p:commandButton value="Retirer du panier" action="#{panMB.supprArticle}">
+				<p:commandButton value="Retirer du panier" action="#{panMB.supprArticle}" update="@all">
 		           <f:setPropertyActionListener value="#{lc.produit}" target="#{panMB.article.produit}" />
 		        </p:commandButton>
 			</h:form>

@@ -15,7 +15,7 @@ public interface IProduitDao {
 	public int supprProduit(Produit pr);
 	public Produit rechProduit(Produit pr);
 	public List<Produit> getAllProduit();
-	
+	public List<Produit> getProduitByNom(Produit pr);
 	public List<Produit> getProduitByIdCat(Categorie cat);
 	
 

@@ -13,7 +13,7 @@
 <ui:composition template="/templates/layout.xhtml">
 <ui:define name="corps">
 <ui:insert>
-	<ui:include src="templates/menuBar.xhtml"></ui:include>
+	<ui:include src="templates/menuBarAd.xhtml"></ui:include>
 </ui:insert>
 
 
@@ -25,7 +25,9 @@
 			Description : <p:inputText value="#{prMB.produit.description}" />
 			Prix : <p:inputText value="#{prMB.produit.prix}" />
 			Quantité : <p:inputText value="#{prMB.produit.quantite}" />
-<!-- 			Categorie: <p:inputText value="#{prMB.produit.categorie.nom}"/> -->
+			<p:selectOneMenu value="#{prMB.categorie.id}" id="console" style="width:125px">
+            	<f:selectItems value="#{catMBSteven.listeCategorie}" var="cat" itemLabel="#{cat.nom}" itemValue="#{cat.id}" />
+        	</p:selectOneMenu>
 			
 			<p:fileUpload value="#{prMB.file}" mode="simple" skinSimple="true"/>
 			<h:commandButton value="Modifier" action="#{prMB.modifProduit}" />

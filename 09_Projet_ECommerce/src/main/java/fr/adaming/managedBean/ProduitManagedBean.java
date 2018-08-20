@@ -46,11 +46,13 @@ public class ProduitManagedBean implements Serializable {
 	private List<Produit> listeProduitCat;
 	private List<Produit> listeProduitPromo;
 	private HorizontalBarChartModel horizontalBarModel;
-
+	private boolean indice;
 	private UploadedFile file;
+	private List<Produit> listeProduitRech;
 	
 	@PostConstruct
 	public void init(){
+		this.indice=false;
 		listeProduit = prService.getAllProduit();
 		createBarModels();
 		
@@ -63,7 +65,7 @@ public class ProduitManagedBean implements Serializable {
 				return  Integer.compare(produit1.getQuantite(), produit2.getQuantite());
 			}});
 		List<Produit> listeProduitPromo2 = new ArrayList<Produit>();
-		for (int i=0;i<2;i++){
+		for (int i=0;i<3;i++){
 			listeProduitPromo2.add(listeProduitPromo.get(i));
 		}
 		// les mettre à -20% :
@@ -71,6 +73,13 @@ public class ProduitManagedBean implements Serializable {
 			pr.setPrix(pr.getPrix()*4/5);
 		}
 		listeProduitPromo = listeProduitPromo2;
+		// (Le développement de cette méthode aurait dû se trouver dans le Service)
+		
+		// recup la liste par catégorie :
+		if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("catEnCours")!= null){
+			Categorie catEnCours = (Categorie) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("catEnCours");
+			listeProduitCat = prService.getProduitByIdCat(catEnCours);
+		}
 	}
 
 	public ProduitManagedBean() {
@@ -139,7 +148,20 @@ public class ProduitManagedBean implements Serializable {
 	public void setHorizontalBarModel(HorizontalBarChartModel horizontalBarModel) {
 		this.horizontalBarModel = horizontalBarModel;
 	}
-
+	
+	public boolean isIndice() {
+		return indice;
+	}
+	public void setIndice(boolean indice) {
+		this.indice = indice;
+	}
+	
+	public List<Produit> getListeProduitRech() {
+		return listeProduitRech;
+	}
+	public void setListeProduitRech(List<Produit> listeProduitRech) {
+		this.listeProduitRech = listeProduitRech;
+	}
 	/** méthodes : */
 	public String ajoutProduit() {
 		this.produit.setCategorie(this.categorie);
@@ -148,13 +170,14 @@ public class ProduitManagedBean implements Serializable {
 
 		if (prAjout != 0) {
 			listeProduit = prService.getAllProduit();
-			return "listeProduit";
+			return "accueilAd";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué !"));
 			return "ajoutProduit";
 		}
-
 	}
+	
+	
 	
 	public String modifProduit() {
 		
@@ -163,7 +186,7 @@ public class ProduitManagedBean implements Serializable {
 
 		if (prModif != 0) {
 			listeProduit = prService.getAllProduit();
-			return "listeProduit";
+			return "accueilAd";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La modification a échoué !"));
 			return "modifProduit";
@@ -176,7 +199,7 @@ public class ProduitManagedBean implements Serializable {
 		
 		if(prSuppr != 0){
 			listeProduit = prService.getAllProduit();
-			return "listeProduit";
+			return "accueilAd";
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué !"));
 			return "supprProduit";
@@ -188,8 +211,8 @@ public class ProduitManagedBean implements Serializable {
 		List<Produit>prRechCat = prService.getProduitByIdCat(this.categorie);
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("catEnCours", this.categorie);
 		if(prRechCat != null){
-			listeProduit = prRechCat;
-			return "listeProduit";
+			listeProduitCat = prRechCat;
+			return "listeProduitCat";
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("ça a foiré !"));
 			return "accueil";
@@ -239,6 +262,25 @@ public class ProduitManagedBean implements Serializable {
 	        yAxis.setTickFormat("%.10f");
 	        
 	    }
+	 
+	 public String getProduitByNom(){
+		 List<Produit> prBD=prService.getProduitByNom(this.produit);
+			
+			if(prBD.size()>0){
+				for(Produit pr:prBD){
+				System.out.println("La liste des produits recherchée est : "+pr.getIdProduit()+" "+pr.getDesignation()+" "+pr.getDescription()+" "+pr.getQuantite()+" "+pr.getPrix()+" "+pr.getCategorie().getNom()+" ");
+				}
+				this.listeProduitRech=prBD;
+				for(Produit pr:listeProduitRech){
+					System.out.println("La liste des produits recherchée est : "+pr.getIdProduit()+" "+pr.getDesignation()+" "+pr.getDescription()+" "+pr.getQuantite()+" "+pr.getPrix()+" "+pr.getCategorie().getNom()+" ");
+					}
+				this.indice=true;
+			}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La recherche par nom à échoué"));
+			
+			
+		}return "rechProduit";
+		}
 	
 
 }

@@ -36,6 +36,14 @@
 			<h:graphicImage value="#{cat.image}" style="width:100px;height:100px" />
 		</p:column>
 		
+		<p:column>
+	        <h:form>
+				<p:commandButton value="Produits de la catégorie" action="#{prMB.rechProduitByIdCat}">
+		           	<f:setPropertyActionListener value="#{cat}" target="#{prMB.categorie}" />
+		        </p:commandButton>
+	        </h:form>
+        </p:column>
+		
 	</p:dataTable>
 
 </ui:define>

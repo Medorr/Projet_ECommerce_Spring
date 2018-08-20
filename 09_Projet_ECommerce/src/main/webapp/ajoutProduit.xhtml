@@ -13,7 +13,7 @@
 <ui:composition template="/templates/layout.xhtml">
 <ui:define name="corps">
 <ui:insert>
-	<ui:include src="templates/menuBar.xhtml"></ui:include>
+	<ui:include src="templates/menuBarAd.xhtml"></ui:include>
 </ui:insert>
 
 	<h1>Formulaire d'ajout d'un produit</h1>
@@ -26,7 +26,7 @@
 
 			
         <p:selectOneMenu value="#{prMB.categorie.id}" id="console" style="width:125px">
-            <f:selectItems value="#{catMB.listeCat}" var="cat" itemLabel="#{cat.nom}" itemValue="#{cat.id}" />
+            <f:selectItems value="#{catMBSteven.listeCategorie}" var="cat" itemLabel="#{cat.nom}" itemValue="#{cat.id}" />
         </p:selectOneMenu>
         
         Photo: <p:fileUpload value="#{prMB.file}" mode="simple" skinSimple="true" />

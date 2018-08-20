@@ -71,7 +71,7 @@ CB : <p:inputText value="Entrez vos coordonnées bancaires" />
     <p:growl id="message" showDetail="true" />
  
     <p:commandButton value="Confirmer l'achat" action="#{panMB.passerCommande}">
-        <p:confirm header="Confirmation" message="Vous allez commander #{panMB.nombreArticles} articles différents pour #{panMB.prixTotal}€, êtes-vous sûr?" icon="ui-icon-alert" />
+        <p:confirm header="Confirmation" message="Vous allez commander #{panMB.nombreArticles} article#{panMB.pluriel} différent#{panMB.pluriel} pour #{panMB.prixTotal}€, êtes-vous sûr?" icon="ui-icon-alert" />
     </p:commandButton>
  
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
